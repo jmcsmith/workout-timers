@@ -1,0 +1,29 @@
+ [{
+  "timers": [{
+             "name":"Incline",
+             "time":12.5,
+             "color":"red"
+             },
+             {
+             "name":"Diamond",
+                   "time":12.5,
+                   "color":"black"
+                 }
+               ],
+    "name": "Pushups"
+  },
+  {
+    "timers": [
+                   {
+                     "name":"Side Plank Left",
+                     "time":30,
+                     "color":"red"
+                   },
+                   {
+                     "name":"Side Plank Right",
+                     "time":30,
+                     "color":"black"
+                   }
+                 ],
+    "name": "Planks"
+  }]
