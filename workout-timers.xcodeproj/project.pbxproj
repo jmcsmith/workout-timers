@@ -16,6 +16,7 @@
 		EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0120AF3350004A70C0 /* TimersTableViewController.swift */; };
 		EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0320AF38D9004A70C0 /* Workout.swift */; };
 		EE91EC0620AF3913004A70C0 /* example.json in Resources */ = {isa = PBXBuildFile; fileRef = EE91EC0520AF3913004A70C0 /* example.json */; };
+		EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EE91EC0120AF3350004A70C0 /* TimersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersTableViewController.swift; sourceTree = "<group>"; };
 		EE91EC0320AF38D9004A70C0 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		EE91EC0520AF3913004A70C0 /* example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				EE91EC0120AF3350004A70C0 /* TimersTableViewController.swift */,
 				EE91EC0320AF38D9004A70C0 /* Workout.swift */,
 				EE91EC0520AF3913004A70C0 /* example.json */,
+				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 			);
 			path = "workout-timers";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE91EBF020AF28F8004A70C0 /* ViewController.swift in Sources */,
+				EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */,
 				EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */,
 				EE91EC0020AF2E68004A70C0 /* WorkoutsTableViewController.swift in Sources */,
 				EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */,

@@ -9,9 +9,14 @@
 import UIKit
 
 class WorkoutsTableViewController: UITableViewController {
-    let workouts = ["Boxing", "Pushups","Planks"]
+      let defaults:UserDefaults = UserDefaults.standard
+    
+    var workouts: [Workout] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let data = defaults.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
+            workouts = wo
+        }
         
     }
     
@@ -35,8 +40,8 @@ class WorkoutsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcell", for: indexPath)
-        cell.textLabel?.text = workouts[indexPath.row]
-        cell.detailTextLabel?.text = "\(arc4random_uniform(15)) timers"
+        cell.textLabel?.text = workouts[indexPath.row].name
+        cell.detailTextLabel?.text = "\(workouts[indexPath.row].timers.count) timers"
         // Configure the cell...
         
         return cell
@@ -86,13 +91,36 @@ class WorkoutsTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         let destination = segue.destination as? TimersTableViewController
         if let index = tableView.indexPathForSelectedRow?.row {
-            destination?.title = workouts[index]
+            destination?.title = workouts[index].name
+            destination?.workout = workouts[index]
+destination?.workoutController = self
         }
         // Pass the selected object to the new view controller.
     }
     
     @IBAction func addWorkout(_ sender: UIBarButtonItem) {
-        print("add item")
+        let alert = UIAlertController(title: "New Workout", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Workout Name"
+        })
+        
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+            
+            if let name = alert.textFields?.first?.text {
+
+                self.workouts.append(Workout(timers: [], name: name))
+                self.tableView.reloadData()
+                self.saveWorkoutsData()
+            }
+        }))
+        
+        self.present(alert, animated: true)
+
+
     }
-    
+    func saveWorkoutsData() {
+        try? self.defaults.set(self.workouts.jsonData(), forKey: "workoutData")
+    }
 }

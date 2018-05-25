@@ -8,47 +8,63 @@
 
 //   let workouts = try Workouts(json)
 
+// To parse the JSON, add this file to your project and do:
+//
+//   let workouts = try Workouts(json)
+
 import Foundation
 
 typealias Workouts = [Workout]
 
-struct Workout: Codable {
-    let timers: [Timer]
-    let name: String
+class Workout: Codable {
+    var timers: [Timer]
+    var name: String
     
     enum CodingKeys: String, CodingKey {
         case timers = "timers"
         case name = "name"
     }
+    
+    init(timers: [Timer], name: String) {
+        self.timers = timers
+        self.name = name
+    }
 }
 
-struct Timer: Codable {
-    let name: String
-    let time: Double
-    let color: String
+class Timer: Codable {
+    var name: String
+    var time: Double
+    var color: String
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case time = "time"
         case color = "color"
     }
+    
+    init(name: String, time: Double, color: String) {
+        self.name = name
+        self.time = time
+        self.color = color
+    }
 }
 
 // MARK: Convenience initializers
 
 extension Workout {
-    init(data: Data) throws {
-        self = try JSONDecoder().decode(Workout.self, from: data)
+    convenience init(data: Data) throws {
+        let me = try JSONDecoder().decode(Workout.self, from: data)
+        self.init(timers: me.timers, name: me.name)
     }
     
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+    convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
     
-    init(fromURL url: URL) throws {
+    convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
     
@@ -62,18 +78,19 @@ extension Workout {
 }
 
 extension Timer {
-    init(data: Data) throws {
-        self = try JSONDecoder().decode(Timer.self, from: data)
+    convenience init(data: Data) throws {
+        let me = try JSONDecoder().decode(Timer.self, from: data)
+        self.init(name: me.name, time: me.time, color: me.color)
     }
     
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+    convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
     
-    init(fromURL url: URL) throws {
+    convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
     
