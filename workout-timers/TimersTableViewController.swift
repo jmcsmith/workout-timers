@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimersTableViewController: UITableViewController {
     @IBOutlet weak var playPauseButton: UIBarButtonItem!
@@ -106,12 +107,22 @@ class TimersTableViewController: UITableViewController {
     }
     func setTimerToIndex(index: Int){
         if let time = workout?.timers[index].time {
+            speakWorkout(forIndex: index)
             currentTimer.startTime = time
             currentTimer.currentTime = time
             currentTimer.timerIndex = index
         
         }
+        
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    }
+    func speakWorkout(forIndex: Int)  {
+        
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        speechSynthesizer.speak(speechUtterance)
     }
     /*
      // Override to support conditional editing of the table view.

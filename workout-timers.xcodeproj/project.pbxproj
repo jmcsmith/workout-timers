@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */; };
 		EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EBED20AF28F8004A70C0 /* AppDelegate.swift */; };
 		EE91EBF020AF28F8004A70C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EBEF20AF28F8004A70C0 /* ViewController.swift */; };
 		EE91EBF320AF28F8004A70C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE91EBF120AF28F8004A70C0 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		EE91EBEA20AF28F8004A70C0 /* workout-timers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE91EBED20AF28F8004A70C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE91EBEF20AF28F8004A70C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				EE91EC0320AF38D9004A70C0 /* Workout.swift */,
 				EE91EC0520AF3913004A70C0 /* example.json */,
 				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
+				EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */,
 			);
 			path = "workout-timers";
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */,
 				EE91EC0020AF2E68004A70C0 /* WorkoutsTableViewController.swift in Sources */,
 				EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */,
+				EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */,
 				EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
