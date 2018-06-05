@@ -9,6 +9,57 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings-->
+        <scene sceneID="4PN-ZU-J3u">
+            <objects>
+                <tableViewController title="Settings" id="VO1-lv-9dJ" customClass="SettingsTableViewController" customModule="workout_timers" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R9B-0F-wRv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection headerTitle="Sound" id="47r-uD-UHr">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mvi-ne-NOz">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mvi-ne-NOz" id="yH5-ks-rDk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speak Timer Names" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gay-Kp-9gs">
+                                                    <rect key="frame" x="16" y="11" width="154" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-Df-MwL">
+                                                    <rect key="frame" x="310" y="6" width="49" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="speakTimerNamesChanged:" destination="VO1-lv-9dJ" eventType="valueChanged" id="em2-qI-n3b"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="VO1-lv-9dJ" id="fHP-Lc-h61"/>
+                            <outlet property="delegate" destination="VO1-lv-9dJ" id="KGz-hF-1qH"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="speakTimerNamesSwitch" destination="ZWK-Df-MwL" id="Qcu-se-rUC"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lsd-yj-wdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1220" y="-549"/>
+        </scene>
         <!--Workouts-->
         <scene sceneID="U8v-o1-0vB">
             <objects>
@@ -74,6 +125,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Workouts" id="war-T4-bRc">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" image="settings" id="Zal-th-NGz">
+                            <connections>
+                                <segue destination="VO1-lv-9dJ" kind="show" id="dbT-Ju-SdO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pQR-JR-yBo">
                             <connections>
                                 <action selector="addWorkout:" destination="n0Y-oU-h70" id="Z2O-kV-Ty3"/>
@@ -97,6 +153,11 @@
                             <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
+                                <barButtonItem title="Random" image="random" id="xOf-lm-DeS">
+                                    <connections>
+                                        <action selector="random:" destination="L3G-mb-Zsa" id="f63-Fr-GgD"/>
+                                    </connections>
+                                </barButtonItem>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Qd3-CT-Gy9"/>
                                 <barButtonItem systemItem="play" id="MCW-H8-WIU">
                                     <connections>
@@ -104,6 +165,11 @@
                                     </connections>
                                 </barButtonItem>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="OhV-gA-50f"/>
+                                <barButtonItem systemItem="action" id="88y-gi-ysb">
+                                    <connections>
+                                        <action selector="shareWorkout:" destination="L3G-mb-Zsa" id="Kzx-de-KRd"/>
+                                    </connections>
+                                </barButtonItem>
                             </items>
                         </toolbar>
                         <prototypes>
@@ -173,4 +239,8 @@
             <point key="canvasLocation" x="-94" y="131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="random" width="25" height="25"/>
+        <image name="settings" width="25" height="25"/>
+    </resources>
 </document>

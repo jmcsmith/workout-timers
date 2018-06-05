@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class TimersTableViewController: UITableViewController {
+    let defaults:UserDefaults = UserDefaults.standard
     @IBOutlet weak var playPauseButton: UIBarButtonItem!
     var workout: Workout?
     var workoutController: WorkoutsTableViewController = WorkoutsTableViewController()
@@ -18,7 +19,7 @@ class TimersTableViewController: UITableViewController {
     var timer: UIKit.Timer!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -51,6 +52,17 @@ class TimersTableViewController: UITableViewController {
         // Configure the cell...
         
         return cell
+    }
+    @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
+        do {
+            let _ = try workout?.jsonString()
+            //print(json)
+        } catch {
+            //print(error)
+        }
+    }
+    
+    @IBAction func random(_ sender: Any) {
     }
     
     @IBAction func addTimer(_ sender: UIBarButtonItem) {
@@ -91,7 +103,7 @@ class TimersTableViewController: UITableViewController {
             currentTimer.currentTime -= 1
             var cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0))
             cell?.detailTextLabel?.text = currentTimer.currentTime.description
-         
+            
             print(currentTimer.currentTime)
         } else {
             timer.invalidate()
@@ -107,11 +119,14 @@ class TimersTableViewController: UITableViewController {
     }
     func setTimerToIndex(index: Int){
         if let time = workout?.timers[index].time {
-            speakWorkout(forIndex: index)
+            if defaults.bool(forKey: "speakTimers") == true {
+                speakWorkout(forIndex: index)
+            }
+            
             currentTimer.startTime = time
             currentTimer.currentTime = time
             currentTimer.timerIndex = index
-        
+            
         }
         
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
