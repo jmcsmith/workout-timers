@@ -37,7 +37,13 @@ class WorkoutsTableViewController: UITableViewController {
         return workouts.count
     }
     
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.workouts.remove(at: indexPath.row)
+            self.saveWorkoutsData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcell", for: indexPath) as! WorkoutTableViewCell 
         cell.title?.text = workouts[indexPath.row].name

@@ -61,6 +61,14 @@ class TimersTableViewController: UITableViewController {
         
         return cell
     }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.workout?.timers.remove(at: indexPath.row)
+            self.workoutController.saveWorkoutsData()
+            self.workoutController.tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
             let filename = "\(workout?.name.description ?? "workout").wt"
