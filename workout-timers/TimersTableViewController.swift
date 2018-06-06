@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class TimersTableViewController: UITableViewController {
-   
+    
     let defaults:UserDefaults = UserDefaults.standard
     @IBOutlet weak var playPauseButton: UIBarButtonItem!
     @IBOutlet weak var randomButton: UIBarButtonItem!
@@ -63,8 +63,14 @@ class TimersTableViewController: UITableViewController {
     }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
-            let json = try workout?.jsonString()
-            print(json)
+            let filename = "\(workout?.name.description ?? "workout").wt"
+            let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
+            let content = try workout?.jsonString()
+            try content?.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+            let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+            self.present(vc, animated: true){
+                
+            }
         } catch {
             //print(error)
         }
@@ -112,7 +118,7 @@ class TimersTableViewController: UITableViewController {
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Timer Duration"
             textField.keyboardType = UIKeyboardType.numberPad
-
+            
         })
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             
@@ -164,7 +170,7 @@ class TimersTableViewController: UITableViewController {
             currentTimer.currentTime -= 1
             let cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0)) as? TimerTableViewCell
             cell?.timerTime?.text = currentTimer.currentTime.description
-              cell?.progressView.setProgress(Float((currentTimer.startTime - currentTimer.currentTime) / currentTimer.startTime), animated: true)
+            cell?.progressView.setProgress(Float((currentTimer.startTime - currentTimer.currentTime) / currentTimer.startTime), animated: true)
             //cell?.backgroundColor = UIColor.green
             //print(currentTimer.currentTime)
         } else {
