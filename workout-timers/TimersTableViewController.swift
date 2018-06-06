@@ -10,16 +10,21 @@ import UIKit
 import AVFoundation
 
 class TimersTableViewController: UITableViewController {
+   
     let defaults:UserDefaults = UserDefaults.standard
     @IBOutlet weak var playPauseButton: UIBarButtonItem!
+    @IBOutlet weak var randomButton: UIBarButtonItem!
     var workout: Workout?
     var workoutController: WorkoutsTableViewController = WorkoutsTableViewController()
     var isWorkoutPlaying = false
     var currentTimer = CurrentTimer()
     var timer: UIKit.Timer!
+    
+    var randoms : [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -46,34 +51,68 @@ class TimersTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "timerCell", for: indexPath)
-        cell.textLabel?.text = workout?.timers[indexPath.row].name
-        cell.detailTextLabel?.text = workout?.timers[indexPath.row].time.description
+        let cell = tableView.dequeueReusableCell(withIdentifier: "timerCell", for: indexPath) as! TimerTableViewCell
+        cell.timerName.text = workout?.timers[indexPath.row].name
+        cell.timerTime.text = workout?.timers[indexPath.row].time.description
+        cell.progressView.layer.cornerRadius = 10
+        cell.progressView.clipsToBounds = true
+        cell.bringSubview(toFront: cell.timerName)
         // Configure the cell...
         
         return cell
     }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
-            let _ = try workout?.jsonString()
-            //print(json)
+            let json = try workout?.jsonString()
+            print(json)
         } catch {
             //print(error)
         }
     }
     
     @IBAction func random(_ sender: Any) {
+        randoms = []
+        DispatchQueue.main.async {
+            self.playPauseButton.isEnabled = false
+            self.randomButton.isEnabled = false
+        }
+        setTimerToRandom()
     }
-    
+    func setTimerToRandom() {
+        if let size = (workout?.timers.count){
+            var index = Int(arc4random_uniform(UInt32(size)))
+            while randoms.contains(index){
+                index = Int(arc4random_uniform(UInt32(size)))
+            }
+            print("Random index: \(index)")
+            randoms.append(index)
+            if let time = workout?.timers[index].time {
+                if defaults.bool(forKey: "speakTimers") == true {
+                    speakWorkout(forIndex: index)
+                }
+                
+                currentTimer.startTime = time
+                currentTimer.currentTime = time
+                currentTimer.timerIndex = index
+                
+            }
+            
+            timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerRandom)), userInfo: nil, repeats: true)
+        }
+    }
     @IBAction func addTimer(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Timer to \(self.title ?? "Workout")", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Timer Name"
+            textField.keyboardType = UIKeyboardType.alphabet
+            textField.autocapitalizationType = UITextAutocapitalizationType.words
         })
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Timer Duration"
+            textField.keyboardType = UIKeyboardType.numberPad
+
         })
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             
@@ -95,15 +134,17 @@ class TimersTableViewController: UITableViewController {
     @IBAction func playPause(_ sender: UIBarButtonItem) {
         DispatchQueue.main.async {
             self.playPauseButton.isEnabled = false
+            self.randomButton.isEnabled = false
         }
         setTimerToIndex(index: 0)
     }
     @objc func updateTimer(){
         if currentTimer.currentTime > 0 {
             currentTimer.currentTime -= 1
-            var cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0))
-            cell?.detailTextLabel?.text = currentTimer.currentTime.description
-            
+            let cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0)) as? TimerTableViewCell
+            cell?.timerTime?.text = currentTimer.currentTime.description
+            cell?.progressView.setProgress(Float((currentTimer.startTime - currentTimer.currentTime) / currentTimer.startTime), animated: true)
+            //cell?.backgroundColor = UIColor.green
             print(currentTimer.currentTime)
         } else {
             timer.invalidate()
@@ -113,6 +154,28 @@ class TimersTableViewController: UITableViewController {
             } else {
                 DispatchQueue.main.async {
                     self.playPauseButton.isEnabled = true
+                    self.randomButton.isEnabled = true
+                }
+            }
+        }
+    }
+    @objc func updateTimerRandom(){
+        if currentTimer.currentTime > 0 {
+            currentTimer.currentTime -= 1
+            let cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0)) as? TimerTableViewCell
+            cell?.timerTime?.text = currentTimer.currentTime.description
+              cell?.progressView.setProgress(Float((currentTimer.startTime - currentTimer.currentTime) / currentTimer.startTime), animated: true)
+            //cell?.backgroundColor = UIColor.green
+            //print(currentTimer.currentTime)
+        } else {
+            timer.invalidate()
+            print("end timer")
+            if randoms.count < (workout?.timers.count)! {
+                setTimerToRandom()
+            } else {
+                DispatchQueue.main.async {
+                    self.playPauseButton.isEnabled = true
+                    self.randomButton.isEnabled = true
                 }
             }
         }
@@ -183,5 +246,11 @@ class TimersTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.playPauseButton.isEnabled = false
+            self.randomButton.isEnabled = false
+        }
+        setTimerToIndex(index: indexPath.row)
+    }
 }

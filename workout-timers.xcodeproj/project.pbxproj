@@ -19,6 +19,7 @@
 		EE91EC0620AF3913004A70C0 /* example.json in Resources */ = {isa = PBXBuildFile; fileRef = EE91EC0520AF3913004A70C0 /* example.json */; };
 		EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
 		EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */; };
+		EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE121920C7673800A46267 /* TimerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		EE91EC0520AF3913004A70C0 /* example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimer.swift; sourceTree = "<group>"; };
 		EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		EEFE121920C7673800A46267 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 				EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */,
 				EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */,
+				EEFE121920C7673800A46267 /* TimerTableViewCell.swift */,
 			);
 			path = "workout-timers";
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */,
 				EE91EC0020AF2E68004A70C0 /* WorkoutsTableViewController.swift in Sources */,
 				EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */,
+				EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */,
 				EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */,
 				EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */,
 				EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */,
