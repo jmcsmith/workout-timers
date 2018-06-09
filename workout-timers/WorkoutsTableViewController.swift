@@ -9,14 +9,15 @@
 import UIKit
 
 class WorkoutsTableViewController: UITableViewController {
-    let defaults:UserDefaults = UserDefaults.standard
+    var defaults = UserDefaults(suiteName: "group.workouttimers")
     
     var workouts: [Workout] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let data = defaults.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
+        if let data = defaults?.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
             workouts = wo
         }
+        (UIApplication.shared.delegate as? AppDelegate)?.sendTimersToWatch()
         
     }
     
@@ -130,6 +131,6 @@ class WorkoutsTableViewController: UITableViewController {
         
     }
     func saveWorkoutsData() {
-        try? self.defaults.set(self.workouts.jsonData(), forKey: "workoutData")
+        try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")
     }
 }

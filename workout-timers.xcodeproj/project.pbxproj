@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0BFCFE20CA28B60010531E /* WorkoutsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BFCFD20CA28B60010531E /* WorkoutsInterfaceController.swift */; };
+		EE0BFD0220CA2D980010531E /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0320AF38D9004A70C0 /* Workout.swift */; };
+		EE0BFD0420CC1A4B0010531E /* WorkoutRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */; };
+		EE40877020CA1FF200790ECE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE40876E20CA1FF200790ECE /* Interface.storyboard */; };
+		EE40877220CA1FF400790ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE40877120CA1FF400790ECE /* Assets.xcassets */; };
+		EE40877920CA1FF400790ECE /* workout-timers-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE40877820CA1FF400790ECE /* workout-timers-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EE40877E20CA1FF400790ECE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40877D20CA1FF400790ECE /* InterfaceController.swift */; };
+		EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40877F20CA1FF400790ECE /* ExtensionDelegate.swift */; };
+		EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40878120CA1FF400790ECE /* NotificationController.swift */; };
+		EE40878420CA1FF500790ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE40878320CA1FF500790ECE /* Assets.xcassets */; };
+		EE40878920CA1FF500790ECE /* workout-timers-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EE40876C20CA1FF200790ECE /* workout-timers-watch.app */; };
 		EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */; };
 		EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EBED20AF28F8004A70C0 /* AppDelegate.swift */; };
 		EE91EBF020AF28F8004A70C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EBEF20AF28F8004A70C0 /* ViewController.swift */; };
@@ -22,7 +33,63 @@
 		EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE121920C7673800A46267 /* TimerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EE40877A20CA1FF400790ECE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE91EBE220AF28F8004A70C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE40877720CA1FF400790ECE;
+			remoteInfo = "workout-timers-watch Extension";
+		};
+		EE40878720CA1FF500790ECE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE91EBE220AF28F8004A70C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE40876B20CA1FF200790ECE;
+			remoteInfo = "workout-timers-watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EE40878D20CA1FF500790ECE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EE40877920CA1FF400790ECE /* workout-timers-watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE40879120CA1FF500790ECE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				EE40878920CA1FF500790ECE /* workout-timers-watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EE0BFCFD20CA28B60010531E /* WorkoutsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsInterfaceController.swift; sourceTree = "<group>"; };
+		EE0BFCFF20CA29810010531E /* workout-timers-watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "workout-timers-watch Extension.entitlements"; sourceTree = "<group>"; };
+		EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowController.swift; sourceTree = "<group>"; };
+		EE40876C20CA1FF200790ECE /* workout-timers-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE40876F20CA1FF200790ECE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		EE40877120CA1FF400790ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE40877320CA1FF400790ECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE40877820CA1FF400790ECE /* workout-timers-watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "workout-timers-watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE40877D20CA1FF400790ECE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		EE40877F20CA1FF400790ECE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		EE40878120CA1FF400790ECE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		EE40878320CA1FF500790ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE40878520CA1FF500790ECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE40878620CA1FF500790ECE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		EE91EBEA20AF28F8004A70C0 /* workout-timers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE91EBED20AF28F8004A70C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +108,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EE40877520CA1FF400790ECE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE91EBE720AF28F8004A70C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,10 +125,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE40876D20CA1FF200790ECE /* workout-timers-watch */ = {
+			isa = PBXGroup;
+			children = (
+				EE40876E20CA1FF200790ECE /* Interface.storyboard */,
+				EE40877120CA1FF400790ECE /* Assets.xcassets */,
+				EE40877320CA1FF400790ECE /* Info.plist */,
+			);
+			path = "workout-timers-watch";
+			sourceTree = "<group>";
+		};
+		EE40877C20CA1FF400790ECE /* workout-timers-watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EE0BFCFF20CA29810010531E /* workout-timers-watch Extension.entitlements */,
+				EE40877D20CA1FF400790ECE /* InterfaceController.swift */,
+				EE40877F20CA1FF400790ECE /* ExtensionDelegate.swift */,
+				EE40878120CA1FF400790ECE /* NotificationController.swift */,
+				EE40878320CA1FF500790ECE /* Assets.xcassets */,
+				EE40878520CA1FF500790ECE /* Info.plist */,
+				EE40878620CA1FF500790ECE /* PushNotificationPayload.apns */,
+				EE0BFCFD20CA28B60010531E /* WorkoutsInterfaceController.swift */,
+				EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */,
+			);
+			path = "workout-timers-watch Extension";
+			sourceTree = "<group>";
+		};
 		EE91EBE120AF28F8004A70C0 = {
 			isa = PBXGroup;
 			children = (
 				EE91EBEC20AF28F8004A70C0 /* workout-timers */,
+				EE40876D20CA1FF200790ECE /* workout-timers-watch */,
+				EE40877C20CA1FF400790ECE /* workout-timers-watch Extension */,
 				EE91EBEB20AF28F8004A70C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				EE91EBEA20AF28F8004A70C0 /* workout-timers.app */,
+				EE40876C20CA1FF200790ECE /* workout-timers-watch.app */,
+				EE40877820CA1FF400790ECE /* workout-timers-watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +195,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EE40876B20CA1FF200790ECE /* workout-timers-watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE40878E20CA1FF500790ECE /* Build configuration list for PBXNativeTarget "workout-timers-watch" */;
+			buildPhases = (
+				EE40876A20CA1FF200790ECE /* Resources */,
+				EE40878D20CA1FF500790ECE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE40877B20CA1FF400790ECE /* PBXTargetDependency */,
+			);
+			name = "workout-timers-watch";
+			productName = "workout-timers-watch";
+			productReference = EE40876C20CA1FF200790ECE /* workout-timers-watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		EE40877720CA1FF400790ECE /* workout-timers-watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE40878A20CA1FF500790ECE /* Build configuration list for PBXNativeTarget "workout-timers-watch Extension" */;
+			buildPhases = (
+				EE40877420CA1FF400790ECE /* Sources */,
+				EE40877520CA1FF400790ECE /* Frameworks */,
+				EE40877620CA1FF400790ECE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "workout-timers-watch Extension";
+			productName = "workout-timers-watch Extension";
+			productReference = EE40877820CA1FF400790ECE /* workout-timers-watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		EE91EBE920AF28F8004A70C0 /* workout-timers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE91EBFC20AF28FB004A70C0 /* Build configuration list for PBXNativeTarget "workout-timers" */;
@@ -98,10 +236,12 @@
 				EE91EBE620AF28F8004A70C0 /* Sources */,
 				EE91EBE720AF28F8004A70C0 /* Frameworks */,
 				EE91EBE820AF28F8004A70C0 /* Resources */,
+				EE40879120CA1FF500790ECE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EE40878820CA1FF500790ECE /* PBXTargetDependency */,
 			);
 			name = "workout-timers";
 			productName = "workout-timers";
@@ -114,10 +254,21 @@
 		EE91EBE220AF28F8004A70C0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Robotic Snail Software";
 				TargetAttributes = {
+					EE40876B20CA1FF200790ECE = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					EE40877720CA1FF400790ECE = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					EE91EBE920AF28F8004A70C0 = {
 						CreatedOnToolsVersion = 9.3.1;
 					};
@@ -137,11 +288,30 @@
 			projectRoot = "";
 			targets = (
 				EE91EBE920AF28F8004A70C0 /* workout-timers */,
+				EE40876B20CA1FF200790ECE /* workout-timers-watch */,
+				EE40877720CA1FF400790ECE /* workout-timers-watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EE40876A20CA1FF200790ECE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE40877220CA1FF400790ECE /* Assets.xcassets in Resources */,
+				EE40877020CA1FF200790ECE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE40877620CA1FF400790ECE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE40878420CA1FF500790ECE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE91EBE820AF28F8004A70C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +326,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EE40877420CA1FF400790ECE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */,
+				EE0BFCFE20CA28B60010531E /* WorkoutsInterfaceController.swift in Sources */,
+				EE0BFD0420CC1A4B0010531E /* WorkoutRowController.swift in Sources */,
+				EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */,
+				EE40877E20CA1FF400790ECE /* InterfaceController.swift in Sources */,
+				EE0BFD0220CA2D980010531E /* Workout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE91EBE620AF28F8004A70C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,7 +357,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EE40877B20CA1FF400790ECE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE40877720CA1FF400790ECE /* workout-timers-watch Extension */;
+			targetProxy = EE40877A20CA1FF400790ECE /* PBXContainerItemProxy */;
+		};
+		EE40878820CA1FF500790ECE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE40876B20CA1FF200790ECE /* workout-timers-watch */;
+			targetProxy = EE40878720CA1FF500790ECE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		EE40876E20CA1FF200790ECE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE40876F20CA1FF200790ECE /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		EE91EBF120AF28F8004A70C0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -194,6 +398,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EE40878B20CA1FF500790ECE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "workout-timers-watch Extension/workout-timers-watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JANZDS5D43;
+				INFOPLIST_FILE = "workout-timers-watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		EE40878C20CA1FF500790ECE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "workout-timers-watch Extension/workout-timers-watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JANZDS5D43;
+				INFOPLIST_FILE = "workout-timers-watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		EE40878F20CA1FF500790ECE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JANZDS5D43;
+				IBSC_MODULE = workout_timers_watch_Extension;
+				INFOPLIST_FILE = "workout-timers-watch/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		EE40879020CA1FF500790ECE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JANZDS5D43;
+				IBSC_MODULE = workout_timers_watch_Extension;
+				INFOPLIST_FILE = "workout-timers-watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
 		EE91EBFA20AF28FB004A70C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -347,6 +637,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EE40878A20CA1FF500790ECE /* Build configuration list for PBXNativeTarget "workout-timers-watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE40878B20CA1FF500790ECE /* Debug */,
+				EE40878C20CA1FF500790ECE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE40878E20CA1FF500790ECE /* Build configuration list for PBXNativeTarget "workout-timers-watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE40878F20CA1FF500790ECE /* Debug */,
+				EE40879020CA1FF500790ECE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EE91EBE520AF28F8004A70C0 /* Build configuration list for PBXProject "workout-timers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14269.12" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14224.3"/>
+    </dependencies>
+    <scenes>
+        <!--Workouts Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="WorkoutsInterfaceController" customModule="workout_timers_watch_Extension">
+                    <items>
+                        <table alignment="left" id="9ZB-Yq-zuO">
+                            <items>
+                                <tableRow identifier="workoutRow" id="5MH-FA-3aZ" userLabel="WorkoutRowType" customClass="WorkoutRowController" customModule="workout_timers_watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="6LT-zB-Sla">
+                                        <items>
+                                            <label alignment="left" text="Test" numberOfLines="0" id="CRD-Wu-WVj"/>
+                                            <label alignment="left" text="Label" id="1cj-7S-rli">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="workoutName" destination="CRD-Wu-WVj" id="vc2-BE-c07"/>
+                                        <outlet property="workoutSubTitle" destination="1cj-7S-rli" id="Sxf-nd-h6e"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="workoutsTable" destination="9ZB-Yq-zuO" id="Lhn-Hy-0Ip"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+    </scenes>
+</document>
