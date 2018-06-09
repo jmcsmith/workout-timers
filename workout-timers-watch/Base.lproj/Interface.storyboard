@@ -9,14 +9,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14224.3"/>
     </dependencies>
     <scenes>
-        <!--Workouts Interface Controller-->
+        <!--Workouts-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="WorkoutsInterfaceController" customModule="workout_timers_watch_Extension">
+                <controller identifier="WorkoutsInterfaceController" title="Workouts" id="AgC-eL-Hgc" customClass="WorkoutsInterfaceController" customModule="workout_timers_watch_Extension">
                     <items>
                         <table alignment="left" id="9ZB-Yq-zuO">
                             <items>
-                                <tableRow identifier="workoutRow" id="5MH-FA-3aZ" userLabel="WorkoutRowType" customClass="WorkoutRowController" customModule="workout_timers_watch_Extension">
+                                <tableRow identifier="WorkoutRowType" id="5MH-FA-3aZ" userLabel="WorkoutRowType" customClass="WorkoutRowController" customModule="workout_timers_watch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="6LT-zB-Sla">
                                         <items>
                                             <label alignment="left" text="Test" numberOfLines="0" id="CRD-Wu-WVj"/>
@@ -25,7 +25,6 @@
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="workoutName" destination="CRD-Wu-WVj" id="vc2-BE-c07"/>

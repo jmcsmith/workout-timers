@@ -12,13 +12,18 @@ import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
+    let WorkoutsChangedOnPhone = "workoutsChangedOnPhone"
+    lazy var notificationCenter: NotificationCenter = {
+        return NotificationCenter.default
+    }()
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print("WC Session activation failed with errors: \(error.localizedDescription)")
             return
         }
         print("WC Session activated with state: \(activationState.rawValue)")
-        setupWatchConnectivity()
+        
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -37,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setupWatchConnectivity()
-        
+        setupNotificationCenter()
         return true
     }
     func setupWatchConnectivity(){
@@ -46,20 +51,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             let session = WCSession.default
             session.delegate = self
             session.activate()
-                sendTimersToWatch()
+            sendTimersToWatch()
         }
     }
+    private func setupNotificationCenter() {
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: WorkoutsChangedOnPhone), object: nil, queue: nil) { (notification:Notification) -> Void in
+            self.sendTimersToWatch()
+        }
+    }
+    
+    
     func sendTimersToWatch() {
         if WCSession.isSupported() {
-            var timers = ""
-            var defaults = UserDefaults(suiteName: "group.workouttimers")
+            let defaults = UserDefaults(suiteName: "group.workouttimers")
             if let data = defaults?.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data), let timers = try? wo.jsonString() {
                 let session = WCSession.default
                 if session.isWatchAppInstalled {
                     do {
                         let dictionary = ["timers": timers]
-                        print(timers)
-                        try session.updateApplicationContext(dictionary)
+                        try session.updateApplicationContext(dictionary as [String : Any])
                     }
                     catch{
                         print("ERROR: \(error)")
@@ -84,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

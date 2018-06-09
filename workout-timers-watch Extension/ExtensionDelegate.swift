@@ -79,9 +79,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         if let timers = applicationContext["timers"] as? String {
             print(timers)
             
-            var t = try? Workouts.init(timers)
-            print(t?.count)
-            
+            let t = try? Workouts.init(timers)
+            if let w = t {
+                WorkoutContext.sharedInstance.workouts = w
+            }
             DispatchQueue.main.async {
                 
                 WKInterfaceController.reloadRootPageControllers(withNames: ["WorkoutsInterfaceController"], contexts: nil, orientation: WKPageOrientation.vertical, pageIndex: 0)

@@ -17,7 +17,7 @@ class WorkoutsTableViewController: UITableViewController {
         if let data = defaults?.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
             workouts = wo
         }
-        (UIApplication.shared.delegate as? AppDelegate)?.sendTimersToWatch()
+         WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         
     }
     
@@ -43,6 +43,7 @@ class WorkoutsTableViewController: UITableViewController {
             self.workouts.remove(at: indexPath.row)
             self.saveWorkoutsData()
             tableView.deleteRows(at: [indexPath], with: .fade)
+            WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,6 +124,7 @@ class WorkoutsTableViewController: UITableViewController {
                 self.workouts.append(Workout(timers: [], name: name))
                 self.tableView.reloadData()
                 self.saveWorkoutsData()
+                (UIApplication.shared.delegate as? AppDelegate)?.sendTimersToWatch()
             }
         }))
         

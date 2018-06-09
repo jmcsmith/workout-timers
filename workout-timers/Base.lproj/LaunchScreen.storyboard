@@ -17,7 +17,21 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesWatchArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="8dO-nm-gwI">
+                                <rect key="frame" x="0.0" y="156" width="375" height="375"/>
+                                <color key="backgroundColor" red="0.34960803389549255" green="0.6168561577796936" blue="0.81573683023452759" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8dO-nm-gwI" secondAttribute="height" multiplier="1:1" id="QiO-gb-JF5"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.3411764705882353" green="0.61960784313725492" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="8dO-nm-gwI" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="IJD-qi-fpt"/>
+                            <constraint firstItem="8dO-nm-gwI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="h9t-F8-Mp5"/>
+                            <constraint firstItem="8dO-nm-gwI" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="oKV-1a-7CG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +40,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iTunesWatchArtwork.png" width="1024" height="1024"/>
+    </resources>
 </document>

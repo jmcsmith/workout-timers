@@ -67,6 +67,7 @@ class TimersTableViewController: UITableViewController {
             self.workoutController.saveWorkoutsData()
             self.workoutController.tableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: .fade)
+           WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
@@ -138,7 +139,7 @@ class TimersTableViewController: UITableViewController {
                 self.workoutController.tableView.reloadData()
                 
                 self.tableView.reloadData()
-                
+                  WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
             }
         }))
         
