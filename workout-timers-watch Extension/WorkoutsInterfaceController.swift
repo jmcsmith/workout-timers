@@ -13,11 +13,16 @@ import Foundation
 class WorkoutsInterfaceController: WKInterfaceController {
     
     @IBOutlet var workoutsTable: WKInterfaceTable!
-    
+    let defaults = UserDefaults(suiteName: "group.workouttimers")
     //var workouts: Workouts = [Workout(timers: [], name: "Test"), Workout(timers: [Timer(name: "Plank", time: 4.0, color: "Green")], name: "Planks")]
-    
+    var workouts: Workouts = []
     override func awake(withContext context: Any?) {
-        var workouts = WorkoutContext.sharedInstance.workouts
+        //var workouts = WorkoutContext.sharedInstance.workouts
+        
+        if let json = defaults?.string(forKey: "workoutData"), let wo = try? Workouts.init(json) {
+            workouts = wo
+        }
+        
         super.awake(withContext: context)
         
         let rows = workoutsTable.numberOfRows

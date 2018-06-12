@@ -17,7 +17,7 @@ class WorkoutsTableViewController: UITableViewController {
         if let data = defaults?.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
             workouts = wo
         }
-         WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+         //WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         
     }
     

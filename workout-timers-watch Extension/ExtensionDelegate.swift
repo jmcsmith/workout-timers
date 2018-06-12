@@ -76,13 +76,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         print("Received")
+        let defaults = UserDefaults(suiteName: "group.workouttimers")
         if let timers = applicationContext["timers"] as? String {
             print(timers)
-            
-            let t = try? Workouts.init(timers)
-            if let w = t {
-                WorkoutContext.sharedInstance.workouts = w
-            }
+            defaults?.set(timers, forKey: "workoutData")
+//            let t = try? Workouts.init(timers)
+//            if let w = t {
+//                WorkoutContext.sharedInstance.workouts = w
+//            }
             DispatchQueue.main.async {
                 
                 WKInterfaceController.reloadRootPageControllers(withNames: ["WorkoutsInterfaceController"], contexts: nil, orientation: WKPageOrientation.vertical, pageIndex: 0)
