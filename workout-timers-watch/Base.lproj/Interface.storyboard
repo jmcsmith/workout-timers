@@ -25,6 +25,9 @@
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
+                                        <connections>
+                                            <segue destination="PjV-ih-Gc2" kind="push" identifier="timersSegue" id="cqy-cA-Qkv"/>
+                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="workoutName" destination="CRD-Wu-WVj" id="vc2-BE-c07"/>
@@ -40,6 +43,35 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Timers Interface Controller-->
+        <scene sceneID="gHc-iC-IA5">
+            <objects>
+                <controller id="PjV-ih-Gc2" customClass="TimersInterfaceController" customModule="workout_timers_watch_Extension">
+                    <items>
+                        <table alignment="left" id="JL3-3y-LDB">
+                            <items>
+                                <tableRow identifier="TimerRowType" id="kvI-ji-PCI" customClass="TimerRowController" customModule="workout_timers_watch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Sse-HV-VQ7">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" id="apB-p2-mUY"/>
+                                            <label alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="lTn-0S-xoJ"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="timerName" destination="apB-p2-mUY" id="9ac-51-hOh"/>
+                                        <outlet property="timerTime" destination="lTn-0S-xoJ" id="QW5-UR-h5C"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="timersTable" destination="JL3-3y-LDB" id="yHE-Vy-r8Y"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="490" y="345"/>
         </scene>
     </scenes>
 </document>

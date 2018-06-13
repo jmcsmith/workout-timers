@@ -11,6 +11,11 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
+    let RequestWorkoutsFromPhone = "requestWorkoutsFromPhone"
+    lazy var notificationCenter: NotificationCenter = {
+        return NotificationCenter.default
+    }()
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print("WC Session activation failed with error: \(error.localizedDescription)")
@@ -23,12 +28,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         setupWatchConnectivity()
+        setupNotificationCenter()
     }
     func setupWatchConnectivity() {
         if WCSession.isSupported(){
             let session = WCSession.default
             session.delegate = self
             session.activate()
+        }
+    }
+    private func setupNotificationCenter() {
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: RequestWorkoutsFromPhone), object: nil, queue: nil) { (notification:Notification) -> Void in
+            print("Notification recieved")
+            self.requestTimersFromPhone()
         }
     }
     func applicationDidBecomeActive() {
@@ -80,10 +92,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         if let timers = applicationContext["timers"] as? String {
             print(timers)
             defaults?.set(timers, forKey: "workoutData")
-//            let t = try? Workouts.init(timers)
-//            if let w = t {
-//                WorkoutContext.sharedInstance.workouts = w
-//            }
+            //            let t = try? Workouts.init(timers)
+            //            if let w = t {
+            //                WorkoutContext.sharedInstance.workouts = w
+            //            }
             DispatchQueue.main.async {
                 
                 WKInterfaceController.reloadRootPageControllers(withNames: ["WorkoutsInterfaceController"], contexts: nil, orientation: WKPageOrientation.vertical, pageIndex: 0)
@@ -93,5 +105,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         }
         
     }
+    func requestTimersFromPhone() {
+        print("Request Timers")
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            do {
+                let dictionary = ["request": "sendWorkouts"]
+                try session.updateApplicationContext(dictionary as [String : Any])
+            } catch {
+                print("ERROR: \(error)")
+            }
+        }
+    }
+    
     
 }

@@ -18,7 +18,7 @@ class WorkoutsInterfaceController: WKInterfaceController {
     var workouts: Workouts = []
     override func awake(withContext context: Any?) {
         //var workouts = WorkoutContext.sharedInstance.workouts
-        
+        WorkoutContext.sharedInstance.requestWorkoutsFromPhone()
         if let json = defaults?.string(forKey: "workoutData"), let wo = try? Workouts.init(json) {
             workouts = wo
         }
@@ -48,6 +48,9 @@ class WorkoutsInterfaceController: WKInterfaceController {
                 // 3
             }
         }
+    }
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+        return workouts[rowIndex]
     }
     
 }

@@ -13,12 +13,19 @@ class WorkoutContext {
      static let sharedInstance = WorkoutContext()
     
         let WorkoutsChangedOnPhone = "workoutsChangedOnPhone"
+      let RequestWorkoutsFromPhone = "requestWorkoutsFromPhone"
     var workouts: Workouts = []
     
     func sendChangedOnPhoneNotification() {
         DispatchQueue.main.async { () -> Void in
             let notificationCenter = NotificationCenter.default
             notificationCenter.post(name: Notification.Name(rawValue: self.WorkoutsChangedOnPhone), object: nil)
+        }
+    }
+    func requestWorkoutsFromPhone() {
+        DispatchQueue.main.async { () -> Void in
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.post(name: Notification.Name(rawValue: self.RequestWorkoutsFromPhone), object: nil)
         }
     }
 }

@@ -32,6 +32,8 @@
 		EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0320AF38D9004A70C0 /* Workout.swift */; };
 		EE91EC0620AF3913004A70C0 /* example.json in Resources */ = {isa = PBXBuildFile; fileRef = EE91EC0520AF3913004A70C0 /* example.json */; };
 		EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
+		EE9A8C4620D0B33300E9E8FD /* TimersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */; };
+		EE9A8C4820D0B4E700E9E8FD /* TimerRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */; };
 		EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */; };
 		EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE121920C7673800A46267 /* TimerTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,7 @@
 		EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowController.swift; sourceTree = "<group>"; };
 		EE0BFD0620CC281B0010531E /* WorkoutContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutContext.swift; sourceTree = "<group>"; };
 		EE0BFD0920CC39EB0010531E /* iTunesWatchArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesWatchArtwork.png; sourceTree = "<group>"; };
+		EE0BFD0B20D08BE70010531E /* workout-timers-watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "workout-timers-watch.entitlements"; sourceTree = "<group>"; };
 		EE40876C20CA1FF200790ECE /* workout-timers-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE40876F20CA1FF200790ECE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EE40877120CA1FF400790ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 		EE91EC0320AF38D9004A70C0 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		EE91EC0520AF3913004A70C0 /* example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimer.swift; sourceTree = "<group>"; };
+		EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersInterfaceController.swift; sourceTree = "<group>"; };
+		EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowController.swift; sourceTree = "<group>"; };
 		EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EEFE121920C7673800A46267 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +147,7 @@
 		EE40876D20CA1FF200790ECE /* workout-timers-watch */ = {
 			isa = PBXGroup;
 			children = (
+				EE0BFD0B20D08BE70010531E /* workout-timers-watch.entitlements */,
 				EE40876E20CA1FF200790ECE /* Interface.storyboard */,
 				EE40877120CA1FF400790ECE /* Assets.xcassets */,
 				EE40877320CA1FF400790ECE /* Info.plist */,
@@ -161,6 +167,8 @@
 				EE40878620CA1FF500790ECE /* PushNotificationPayload.apns */,
 				EE0BFCFD20CA28B60010531E /* WorkoutsInterfaceController.swift */,
 				EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */,
+				EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */,
+				EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */,
 			);
 			path = "workout-timers-watch Extension";
 			sourceTree = "<group>";
@@ -275,6 +283,11 @@
 				TargetAttributes = {
 					EE40876B20CA1FF200790ECE = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					EE40877720CA1FF400790ECE = {
 						CreatedOnToolsVersion = 10.0;
@@ -349,9 +362,11 @@
 				EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */,
 				EE0BFCFE20CA28B60010531E /* WorkoutsInterfaceController.swift in Sources */,
 				EE0BFD0420CC1A4B0010531E /* WorkoutRowController.swift in Sources */,
+				EE9A8C4620D0B33300E9E8FD /* TimersInterfaceController.swift in Sources */,
 				EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */,
 				EE40877E20CA1FF400790ECE /* InterfaceController.swift in Sources */,
 				EE0BFD0220CA2D980010531E /* Workout.swift in Sources */,
+				EE9A8C4820D0B4E700E9E8FD /* TimerRowController.swift in Sources */,
 				EE0BFD0720CC281B0010531E /* WorkoutContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +483,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "workout-timers-watch/workout-timers-watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JANZDS5D43;
 				IBSC_MODULE = workout_timers_watch_Extension;
@@ -488,6 +504,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "workout-timers-watch/workout-timers-watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JANZDS5D43;
 				IBSC_MODULE = workout_timers_watch_Extension;

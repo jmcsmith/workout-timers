@@ -124,6 +124,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             return false
         }
     }
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("Recieved context on phone")
+        if let request = applicationContext["request"] as? String {
+            if request == "sendWorkouts" {
+                
+                sendTimersToWatch()
+            }
+        }
+    }
     
 }
 
