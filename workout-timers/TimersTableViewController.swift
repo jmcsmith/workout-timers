@@ -67,7 +67,7 @@ class TimersTableViewController: UITableViewController {
             self.workoutController.saveWorkoutsData()
             self.workoutController.tableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: .fade)
-           WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+            WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
@@ -105,6 +105,8 @@ class TimersTableViewController: UITableViewController {
                 if defaults.bool(forKey: "speakTimers") == true {
                     speakWorkout(forIndex: index)
                 }
+                let notification = UIImpactFeedbackGenerator(style: .heavy)
+                notification.impactOccurred()
                 
                 currentTimer.startTime = time
                 currentTimer.currentTime = time
@@ -139,7 +141,7 @@ class TimersTableViewController: UITableViewController {
                 self.workoutController.tableView.reloadData()
                 
                 self.tableView.reloadData()
-                  WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+                WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
             }
         }))
         
@@ -199,8 +201,10 @@ class TimersTableViewController: UITableViewController {
         if let time = workout?.timers[index].time {
             if defaults.bool(forKey: "speakTimers") == true {
                 speakWorkout(forIndex: index)
+                
             }
-            
+            let notification = UINotificationFeedbackGenerator()
+            notification.notificationOccurred(.success)
             currentTimer.startTime = time
             currentTimer.currentTime = time
             currentTimer.timerIndex = index

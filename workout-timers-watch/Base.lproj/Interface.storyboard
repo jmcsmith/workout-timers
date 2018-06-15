@@ -51,6 +51,15 @@
                     <items>
                         <table alignment="left" id="JL3-3y-LDB">
                             <items>
+                                <tableRow identifier="HeaderRowType" id="GeZ-AK-AcM" userLabel="HeaderRowType" customClass="TimerRowController" customModule="workout_timers_watch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="ObZ-ea-VS6">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Play" id="Lsf-p9-weD">
+                                                <color key="textColor" red="0.3411764706" green="0.61960784310000006" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                </tableRow>
                                 <tableRow identifier="TimerRowType" id="kvI-ji-PCI" customClass="TimerRowController" customModule="workout_timers_watch_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="Sse-HV-VQ7">
                                         <items>

@@ -34,6 +34,8 @@
 		EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
 		EE9A8C4620D0B33300E9E8FD /* TimersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */; };
 		EE9A8C4820D0B4E700E9E8FD /* TimerRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */; };
+		EE9A8E6A20D3F2FC00E9E8FD /* HeaderRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */; };
+		EE9A8E6B20D3FA6800E9E8FD /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
 		EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */; };
 		EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE121920C7673800A46267 /* TimerTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -113,6 +115,7 @@
 		EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimer.swift; sourceTree = "<group>"; };
 		EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersInterfaceController.swift; sourceTree = "<group>"; };
 		EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowController.swift; sourceTree = "<group>"; };
+		EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRowController.swift; sourceTree = "<group>"; };
 		EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EEFE121920C7673800A46267 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +143,7 @@
 			children = (
 				EE91EC0320AF38D9004A70C0 /* Workout.swift */,
 				EE0BFD0620CC281B0010531E /* WorkoutContext.swift */,
+				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -169,6 +173,7 @@
 				EE0BFD0320CC1A4B0010531E /* WorkoutRowController.swift */,
 				EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */,
 				EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */,
+				EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */,
 			);
 			path = "workout-timers-watch Extension";
 			sourceTree = "<group>";
@@ -207,7 +212,6 @@
 				EE91EBFF20AF2E68004A70C0 /* WorkoutsTableViewController.swift */,
 				EE91EC0120AF3350004A70C0 /* TimersTableViewController.swift */,
 				EE91EC0520AF3913004A70C0 /* example.json */,
-				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 				EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */,
 				EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */,
 				EEFE121920C7673800A46267 /* TimerTableViewCell.swift */,
@@ -361,9 +365,11 @@
 			files = (
 				EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */,
 				EE0BFCFE20CA28B60010531E /* WorkoutsInterfaceController.swift in Sources */,
+				EE9A8E6B20D3FA6800E9E8FD /* CurrentTimer.swift in Sources */,
 				EE0BFD0420CC1A4B0010531E /* WorkoutRowController.swift in Sources */,
 				EE9A8C4620D0B33300E9E8FD /* TimersInterfaceController.swift in Sources */,
 				EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */,
+				EE9A8E6A20D3F2FC00E9E8FD /* HeaderRowController.swift in Sources */,
 				EE40877E20CA1FF400790ECE /* InterfaceController.swift in Sources */,
 				EE0BFD0220CA2D980010531E /* Workout.swift in Sources */,
 				EE9A8C4820D0B4E700E9E8FD /* TimerRowController.swift in Sources */,
