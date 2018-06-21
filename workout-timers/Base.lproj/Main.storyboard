@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,6 +68,87 @@
             </objects>
             <point key="canvasLocation" x="1220" y="-549"/>
         </scene>
+        <!--Add Workout View Controller-->
+        <scene sceneID="yuD-rv-yfo">
+            <objects>
+                <viewController id="OjT-ZW-Nz7" customClass="AddWorkoutViewController" customModule="workout_timers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5zR-lt-KIK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEh-FP-AZ0">
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fTD-Oa-aSq">
+                                <rect key="frame" x="8" y="110" width="359" height="29"/>
+                                <segments>
+                                    <segment title="Red"/>
+                                    <segment title="Blue"/>
+                                    <segment title="Green"/>
+                                    <segment title="Yellow"/>
+                                    <segment title="Gray"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fk1-Ly-hNQ">
+                                <rect key="frame" x="8" y="146" width="359" height="29"/>
+                                <segments>
+                                    <segment title="Running"/>
+                                    <segment title="Walking"/>
+                                    <segment title="Interval"/>
+                                    <segment title="Other"/>
+                                </segments>
+                            </segmentedControl>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxL-nM-XYL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="Gbh-DX-rjH">
+                                        <connections>
+                                            <action selector="cancel:" destination="OjT-ZW-Nz7" id="0qn-Ua-0h9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ppg-Je-jjT"/>
+                                    <barButtonItem title="Add Workout" id="v7i-Pz-Pqh">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5sn-6v-DZU"/>
+                                    <barButtonItem title="Add" id="gBy-2m-Vsn">
+                                        <connections>
+                                            <action selector="add:" destination="OjT-ZW-Nz7" id="3yG-q4-k1Q"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fk1-Ly-hNQ" firstAttribute="leading" secondItem="T5t-xR-nK0" secondAttribute="leading" constant="8" id="6ki-0D-0qg"/>
+                            <constraint firstItem="nxL-nM-XYL" firstAttribute="width" secondItem="T5t-xR-nK0" secondAttribute="width" id="9qc-9o-IOR"/>
+                            <constraint firstItem="nxL-nM-XYL" firstAttribute="centerX" secondItem="SEh-FP-AZ0" secondAttribute="centerX" id="KhM-8w-2Xr"/>
+                            <constraint firstItem="T5t-xR-nK0" firstAttribute="trailing" secondItem="fTD-Oa-aSq" secondAttribute="trailing" constant="8" id="Vh1-N0-8ZH"/>
+                            <constraint firstItem="fTD-Oa-aSq" firstAttribute="top" secondItem="SEh-FP-AZ0" secondAttribute="bottom" constant="8" id="WCz-ac-BJf"/>
+                            <constraint firstItem="Fk1-Ly-hNQ" firstAttribute="top" secondItem="fTD-Oa-aSq" secondAttribute="bottom" constant="8" id="Ya6-yh-9Vh"/>
+                            <constraint firstItem="SEh-FP-AZ0" firstAttribute="top" secondItem="nxL-nM-XYL" secondAttribute="bottom" constant="8" id="Z3a-6T-2Bq"/>
+                            <constraint firstItem="SEh-FP-AZ0" firstAttribute="leading" secondItem="T5t-xR-nK0" secondAttribute="leading" constant="8" id="ZpU-Z1-7Gh"/>
+                            <constraint firstItem="T5t-xR-nK0" firstAttribute="top" secondItem="nxL-nM-XYL" secondAttribute="top" id="fBv-zH-FOD"/>
+                            <constraint firstItem="T5t-xR-nK0" firstAttribute="trailing" secondItem="Fk1-Ly-hNQ" secondAttribute="trailing" constant="8" id="ggu-hd-tQ9"/>
+                            <constraint firstItem="T5t-xR-nK0" firstAttribute="trailing" secondItem="SEh-FP-AZ0" secondAttribute="trailing" constant="8" id="nG9-WB-dd2"/>
+                            <constraint firstItem="fTD-Oa-aSq" firstAttribute="leading" secondItem="T5t-xR-nK0" secondAttribute="leading" constant="8" id="vgz-V4-omG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="T5t-xR-nK0"/>
+                    </view>
+                    <connections>
+                        <outlet property="workoutColor" destination="fTD-Oa-aSq" id="IGh-d6-n7D"/>
+                        <outlet property="workoutName" destination="SEh-FP-AZ0" id="Kvx-rL-ptq"/>
+                        <outlet property="workoutType" destination="Fk1-Ly-hNQ" id="xR7-0P-Pbk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgd-AW-iQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940" y="-549"/>
+        </scene>
         <!--Workouts-->
         <scene sceneID="U8v-o1-0vB">
             <objects>
@@ -76,7 +158,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutcell" rowHeight="69" id="VM7-Wn-otA" customClass="WorkoutTableViewCell" customModule="workout_timers" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="workoutcell" rowHeight="69" id="VM7-Wn-otA" customClass="WorkoutTableViewCell" customModule="workout_timers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VM7-Wn-otA" id="BoW-4N-VKl">
@@ -122,7 +204,7 @@
                                     <outlet property="subtitle" destination="oVM-Xt-0TW" id="8Hl-l6-I8C"/>
                                     <outlet property="title" destination="cx2-0x-Kne" id="lb1-u5-YeT"/>
                                     <outlet property="view" destination="7UF-uT-vTW" id="urD-bE-69P"/>
-                                    <segue destination="L3G-mb-Zsa" kind="show" id="ech-mt-8B9"/>
+                                    <segue destination="L3G-mb-Zsa" kind="show" identifier="timersSegue" id="ech-mt-8B9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -139,7 +221,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pQR-JR-yBo">
                             <connections>
-                                <action selector="addWorkout:" destination="n0Y-oU-h70" id="Z2O-kV-Ty3"/>
+                                <segue destination="OjT-ZW-Nz7" kind="popoverPresentation" identifier="newWorkoutSegue" popoverAnchorBarButtonItem="pQR-JR-yBo" id="KbI-Ab-oJ8">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -180,7 +264,7 @@
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="timerCell" id="nON-aO-sGo" customClass="TimerTableViewCell" customModule="workout_timers" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="timerCell" id="nON-aO-sGo" customClass="TimerTableViewCell" customModule="workout_timers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nON-aO-sGo" id="D1O-mg-dFi">

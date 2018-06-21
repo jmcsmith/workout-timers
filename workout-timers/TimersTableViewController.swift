@@ -56,7 +56,22 @@ class TimersTableViewController: UITableViewController {
         cell.timerTime.text = workout?.timers[indexPath.row].time.description
         cell.progressView.layer.cornerRadius = 10
         cell.progressView.clipsToBounds = true
-        cell.bringSubview(toFront: cell.timerName)
+        var backgroundColor = UIColor.lightGray
+        switch workout?.timers[indexPath.row].color {
+        case "Red":
+            backgroundColor = UIColor.red
+        case "Blue":
+            backgroundColor = UIColor.blue
+        case "Green":
+            backgroundColor = UIColor.green
+        case "Yellow":
+            backgroundColor = UIColor.yellow
+        case "Gray":
+            backgroundColor = UIColor.lightGray
+        default:
+            backgroundColor = UIColor.lightGray
+        }
+        cell.progressView.trackTintColor = backgroundColor
         // Configure the cell...
         
         return cell

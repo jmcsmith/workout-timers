@@ -19,15 +19,21 @@ typealias Workouts = [Workout]
 class Workout: Codable {
     var timers: [Timer]
     var name: String
+    var type: String
+    var color: String
     
     enum CodingKeys: String, CodingKey {
         case timers = "timers"
         case name = "name"
+        case type = "type"
+        case color = "color"
     }
     
-    init(timers: [Timer], name: String) {
+    init(timers: [Timer], name: String, type: String, color: String) {
         self.timers = timers
         self.name = name
+        self.type = type
+        self.color = color
     }
 }
 
@@ -54,7 +60,7 @@ class Timer: Codable {
 extension Workout {
     convenience init(data: Data) throws {
         let me = try JSONDecoder().decode(Workout.self, from: data)
-        self.init(timers: me.timers, name: me.name)
+        self.init(timers: me.timers, name: me.name, type: me.type, color: me.color)
     }
     
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -127,3 +133,4 @@ extension Array where Element == Workouts.Element {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
