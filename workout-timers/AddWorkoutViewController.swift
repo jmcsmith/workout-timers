@@ -18,20 +18,23 @@ class AddWorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+workoutName.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
     @IBAction func cancel(_ sender: Any) {
+              workoutName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func add(_ sender: Any) {
         //create workout
-        var workout = Workout(timers: [], name: workoutName.text!, type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!, color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
+        let workout = Workout(timers: [], name: workoutName.text!, type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!, color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
         //save data
         workoutTableViewController?.workouts.append(workout)
         workoutTableViewController?.saveWorkoutsData()
         workoutTableViewController?.tableView.reloadData()
         //send notification to reload table view
+        workoutName.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
     }
     
     /*

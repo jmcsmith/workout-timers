@@ -8,12 +8,11 @@
 
 import UIKit
 
-class WorkoutsTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class WorkoutsTableViewController: UITableViewController {
     
     
     var defaults = UserDefaults(suiteName: "group.workouttimers")
-    var colorChoices = ["Red","Green","Blue","Yellow","Orange"]
-    var selectedColor = "Gray"
+    
     var workouts: [Workout] = []
     
     override func viewDidLoad() {
@@ -77,18 +76,14 @@ class WorkoutsTableViewController: UITableViewController, UIPickerViewDelegate, 
         
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return colorChoices.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return colorChoices[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedColor = colorChoices[row]
+    @IBAction func add(_ sender: Any) {
+        print("add")
+        let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddWorkout") as! AddWorkoutViewController
+        referenceViewController.workoutTableViewController = self
+        referenceViewController.transitioningDelegate = self
+        referenceViewController.modalPresentationStyle = .custom
+        
+        self.present(referenceViewController, animated: true, completion: nil)
     }
     /*
      // Override to support conditional editing of the table view.
@@ -141,6 +136,11 @@ class WorkoutsTableViewController: UITableViewController, UIPickerViewDelegate, 
         } else if segue.identifier == "newWorkoutSegue" {
             let destination = segue.destination as? AddWorkoutViewController
             destination?.workoutTableViewController = self
+        } else if segue.identifier == "test" {
+            let destination = segue.destination as? AddWorkoutViewController
+            destination?.workoutTableViewController = self
+            destination?.modalPresentationStyle = .custom
+            destination?.transitioningDelegate = self
         }
         // Pass the selected object to the new view controller.
     }
@@ -155,9 +155,7 @@ class WorkoutsTableViewController: UITableViewController, UIPickerViewDelegate, 
         })
         let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 40, width: 250, height: 140))
         
-        alert.view.addSubview(pickerFrame)
-        pickerFrame.dataSource = self
-        pickerFrame.delegate = self
+
         
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             
@@ -176,5 +174,17 @@ class WorkoutsTableViewController: UITableViewController, UIPickerViewDelegate, 
     }
     func saveWorkoutsData() {
         try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")
+    }
+    
+
+}
+extension WorkoutsTableViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?,
+        source: UIViewController)
+        -> UIPresentationController? {
+            return AddWorkoutPresentationController(
+                presentedViewController: presented, presenting: presenting)
     }
 }
