@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class TimersTableViewController: UITableViewController {
+class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDelegate {
     
     let defaults:UserDefaults = UserDefaults.standard
     @IBOutlet weak var playPauseButton: UIBarButtonItem!
@@ -22,9 +22,13 @@ class TimersTableViewController: UITableViewController {
     
     var randoms : [Int] = []
     
+    let audioSession = AVAudioSession.sharedInstance()
+    let speechSynthesizer = AVSpeechSynthesizer()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            speechSynthesizer.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -229,12 +233,34 @@ class TimersTableViewController: UITableViewController {
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     func speakWorkout(forIndex: Int)  {
-        
-        let speechSynthesizer = AVSpeechSynthesizer()
+
+
         let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
-        speechSynthesizer.speak(speechUtterance)
+        //speechSynthesizer.speak(speechUtterance)
+        
+
+        
+        
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.duckOthers)
+            
+            try audioSession.setActive(true)
+            
+            speechSynthesizer.speak(speechUtterance)
+   
+        } catch {
+            print("Uh oh!")
+        }
+    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            print("Uh oh!")
+        }
+
     }
     /*
      // Override to support conditional editing of the table view.
