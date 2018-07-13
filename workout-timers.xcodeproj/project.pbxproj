@@ -13,6 +13,7 @@
 		EE0BFD0720CC281B0010531E /* WorkoutContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BFD0620CC281B0010531E /* WorkoutContext.swift */; };
 		EE0BFD0820CC38D30010531E /* WorkoutContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BFD0620CC281B0010531E /* WorkoutContext.swift */; };
 		EE0BFD0A20CC39EB0010531E /* iTunesWatchArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0BFD0920CC39EB0010531E /* iTunesWatchArtwork.png */; };
+		EE16593E20F825B900167D4D /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE16593D20F825B900167D4D /* UIColor+Custom.swift */; };
 		EE40877020CA1FF200790ECE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE40876E20CA1FF200790ECE /* Interface.storyboard */; };
 		EE40877220CA1FF400790ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE40877120CA1FF400790ECE /* Assets.xcassets */; };
 		EE40877920CA1FF400790ECE /* workout-timers-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EE40877820CA1FF400790ECE /* workout-timers-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -91,6 +92,7 @@
 		EE0BFD0620CC281B0010531E /* WorkoutContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutContext.swift; sourceTree = "<group>"; };
 		EE0BFD0920CC39EB0010531E /* iTunesWatchArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesWatchArtwork.png; sourceTree = "<group>"; };
 		EE0BFD0B20D08BE70010531E /* workout-timers-watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "workout-timers-watch.entitlements"; sourceTree = "<group>"; };
+		EE16593D20F825B900167D4D /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		EE40876C20CA1FF200790ECE /* workout-timers-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE40876F20CA1FF200790ECE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EE40877120CA1FF400790ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				EE91EC0320AF38D9004A70C0 /* Workout.swift */,
 				EE0BFD0620CC281B0010531E /* WorkoutContext.swift */,
 				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
+				EE16593D20F825B900167D4D /* UIColor+Custom.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				EE91EC0020AF2E68004A70C0 /* WorkoutsTableViewController.swift in Sources */,
 				EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */,
 				EE72768420DBEB2500A69A86 /* AddWorkoutPresentationController.swift in Sources */,
+				EE16593E20F825B900167D4D /* UIColor+Custom.swift in Sources */,
 				EE0BFD0820CC38D30010531E /* WorkoutContext.swift in Sources */,
 				EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */,
 				EE72768220DBD74C00A69A86 /* AddWorkoutViewController.swift in Sources */,

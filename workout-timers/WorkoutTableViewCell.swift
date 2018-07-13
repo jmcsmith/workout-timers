@@ -12,6 +12,7 @@ class WorkoutTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var view: UIView!
     
     override func awakeFromNib() {

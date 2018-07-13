@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,12 +85,15 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fTD-Oa-aSq">
                                 <rect key="frame" x="8" y="110" width="359" height="29"/>
                                 <segments>
-                                    <segment title="Red"/>
-                                    <segment title="Blue"/>
                                     <segment title="Green"/>
+                                    <segment title="Pink"/>
+                                    <segment title="Blue"/>
                                     <segment title="Yellow"/>
-                                    <segment title="Gray"/>
+                                    <segment title="Orange"/>
                                 </segments>
+                                <connections>
+                                    <action selector="colorValueChanged:" destination="OjT-ZW-Nz7" eventType="valueChanged" id="vud-sX-m4n"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fk1-Ly-hNQ">
                                 <rect key="frame" x="8" y="146" width="359" height="29"/>
@@ -195,13 +198,21 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r2-aX-Acl">
+                                                    <rect key="frame" x="317" y="22" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="oVM-Xt-0TW" firstAttribute="top" secondItem="cx2-0x-Kne" secondAttribute="bottom" constant="4" id="07P-zf-tg3"/>
                                                 <constraint firstAttribute="bottom" secondItem="oVM-Xt-0TW" secondAttribute="bottom" constant="8" id="4Gr-gx-Ox0"/>
                                                 <constraint firstItem="cx2-0x-Kne" firstAttribute="top" secondItem="7UF-uT-vTW" secondAttribute="top" constant="8" id="4Pk-ok-wFF"/>
+                                                <constraint firstItem="7r2-aX-Acl" firstAttribute="centerY" secondItem="7UF-uT-vTW" secondAttribute="centerY" id="7C3-Ui-Oyb"/>
                                                 <constraint firstAttribute="trailing" secondItem="oVM-Xt-0TW" secondAttribute="trailing" constant="8" id="FjF-vJ-Cky"/>
+                                                <constraint firstAttribute="trailing" secondItem="7r2-aX-Acl" secondAttribute="trailing" constant="8" id="Ld6-ff-yaW"/>
                                                 <constraint firstItem="cx2-0x-Kne" firstAttribute="leading" secondItem="7UF-uT-vTW" secondAttribute="leading" constant="8" id="VRr-iI-hZ3"/>
                                                 <constraint firstItem="oVM-Xt-0TW" firstAttribute="leading" secondItem="7UF-uT-vTW" secondAttribute="leading" constant="8" id="bUr-by-b6o"/>
                                                 <constraint firstAttribute="trailing" secondItem="cx2-0x-Kne" secondAttribute="trailing" constant="8" id="fSO-db-AfX"/>
@@ -217,6 +228,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="subtitle" destination="oVM-Xt-0TW" id="8Hl-l6-I8C"/>
+                                    <outlet property="timeLabel" destination="7r2-aX-Acl" id="C2K-ci-8Hc"/>
                                     <outlet property="title" destination="cx2-0x-Kne" id="lb1-u5-YeT"/>
                                     <outlet property="view" destination="7UF-uT-vTW" id="urD-bE-69P"/>
                                     <segue destination="L3G-mb-Zsa" kind="show" identifier="timersSegue" id="ech-mt-8B9"/>

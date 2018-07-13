@@ -24,11 +24,11 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     
     let audioSession = AVAudioSession.sharedInstance()
     let speechSynthesizer = AVSpeechSynthesizer()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            speechSynthesizer.delegate = self
+        speechSynthesizer.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -62,20 +62,21 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         cell.progressView.clipsToBounds = true
         var backgroundColor = UIColor.lightGray
         switch workout?.timers[indexPath.row].color {
-        case "Red":
-            backgroundColor = UIColor.red
+        case "Orange":
+            backgroundColor = UIColor.WorkoutOrange
         case "Blue":
-            backgroundColor = UIColor.blue
-        case "Green":
-            backgroundColor = UIColor.green
+            backgroundColor = UIColor.WorkoutBlue
+        case "Pink":
+            backgroundColor = UIColor.WorkoutPink
         case "Yellow":
-            backgroundColor = UIColor.yellow
-        case "Gray":
-            backgroundColor = UIColor.lightGray
+            backgroundColor = UIColor.WorkoutYellow
+        case "Green":
+            backgroundColor = UIColor.WorkoutGreen
         default:
             backgroundColor = UIColor.lightGray
         }
         cell.progressView.trackTintColor = backgroundColor
+        cell.progressView.progressTintColor = UIColor.lightGray
         // Configure the cell...
         
         return cell
@@ -105,8 +106,10 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     }
     
     @IBAction func random(_ sender: Any) {
+        
         randoms = []
         DispatchQueue.main.async {
+            self.resetTimers()
             self.playPauseButton.isEnabled = false
             self.randomButton.isEnabled = false
         }
@@ -168,11 +171,22 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         
     }
     @IBAction func playPause(_ sender: UIBarButtonItem) {
+        
         DispatchQueue.main.async {
+            self.resetTimers()
             self.playPauseButton.isEnabled = false
             self.randomButton.isEnabled = false
         }
         setTimerToIndex(index: 0)
+    }
+    func resetTimers(){
+        if let count = workout?.timers.count {
+            for i in 0...count {
+                let ip = IndexPath(row: i, section: 0)
+                let cell = tableView.cellForRow(at: ip) as? TimerTableViewCell
+                cell?.progressView.setProgress(0, animated: false)
+            }
+        }
     }
     @objc func updateTimer(){
         if currentTimer.currentTime > 0 {
@@ -233,14 +247,14 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     func speakWorkout(forIndex: Int)  {
-
-
+        
+        
         let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         //speechSynthesizer.speak(speechUtterance)
         
-
+        
         
         
         do {
@@ -249,7 +263,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             try audioSession.setActive(true)
             
             speechSynthesizer.speak(speechUtterance)
-   
+            
         } catch {
             print("Uh oh!")
         }
@@ -260,7 +274,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         } catch {
             print("Uh oh!")
         }
-
+        
     }
     /*
      // Override to support conditional editing of the table view.

@@ -53,21 +53,22 @@ class WorkoutsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcell", for: indexPath) as! WorkoutTableViewCell 
         cell.title?.text = workouts[indexPath.row].name
         cell.subtitle?.text = "\(workouts[indexPath.row].timers.count) timers"
+        cell.timeLabel?.text = "\(String(format: "%.1f", workouts[indexPath.row].timers.reduce(0) { $0 + $1.time} / 60.0))m"
         // Configure the cell...
         cell.view.layer.cornerRadius = 10
         cell.view.clipsToBounds = true
         var backgroundColor = UIColor.lightGray
         switch workouts[indexPath.row].color {
-        case "Red":
-            backgroundColor = UIColor.red
+        case "Orange":
+            backgroundColor = UIColor.WorkoutOrange
         case "Blue":
-            backgroundColor = UIColor.blue
-        case "Green":
-            backgroundColor = UIColor.green
+            backgroundColor = UIColor.WorkoutBlue
+        case "Pink":
+            backgroundColor = UIColor.WorkoutPink
         case "Yellow":
-            backgroundColor = UIColor.yellow
-        case "Gray":
-            backgroundColor = UIColor.lightGray
+            backgroundColor = UIColor.WorkoutYellow
+        case "Green":
+            backgroundColor = UIColor.WorkoutGreen
         default:
             backgroundColor = UIColor.lightGray
         }
