@@ -78,7 +78,7 @@
 				<key>public.filename-extension</key>
 				<string>wt</string>
 				<key>public.mime-type</key>
-				<string>application/workouttimers</string>
+				<string>application/json</string>
 			</dict>
 		</dict>
 	</array>

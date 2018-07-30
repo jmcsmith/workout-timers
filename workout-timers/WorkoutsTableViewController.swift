@@ -146,33 +146,29 @@ class WorkoutsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     
-    @IBAction func addWorkout(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Workout", message: nil, preferredStyle: .alert)
-        alert.isModalInPopover = true
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Workout Name"
-        })
-        let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 40, width: 250, height: 140))
-        
-
-        
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
-            
-            if let name = alert.textFields?.first?.text {
-                
-                //self.workouts.append(Workout(timers: [], name: name))
-                //self.tableView.reloadData()
-                //self.saveWorkoutsData()
-                //(UIApplication.shared.delegate as? AppDelegate)?.sendTimersToWatch()
-            }
-        }))
-        
-        self.present(alert, animated: true)
-        
-        
-    }
+//    @IBAction func addWorkout(_ sender: UIBarButtonItem) {
+//        let alert = UIAlertController(title: "New Workout", message: nil, preferredStyle: .alert)
+//        alert.isModalInPopover = true
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//
+//        alert.addTextField(configurationHandler: { textField in
+//            textField.placeholder = "Workout Name"
+//        })
+//        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+//
+//            if let name = alert.textFields?.first?.text {
+//
+//                //self.workouts.append(Workout(timers: [], name: name))
+//                //self.tableView.reloadData()
+//                //self.saveWorkoutsData()
+//                //(UIApplication.shared.delegate as? AppDelegate)?.sendTimersToWatch()
+//            }
+//        }))
+//
+//        self.present(alert, animated: true)
+//
+//
+//    }
     func saveWorkoutsData() {
         try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")
     }

@@ -29,6 +29,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         speechSynthesizer.delegate = self
+        //self.tableView.isEditing = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -90,6 +91,24 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
+//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .none
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return false
+//    }
+//    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        if let movedObject = self.workout?.timers[sourceIndexPath.row] {
+//            self.workout?.timers.remove(at: sourceIndexPath.row)
+//            self.workout?.timers.insert(movedObject, at: destinationIndexPath.row)
+//            NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
+//            self.workoutController.saveWorkoutsData()
+//            WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+//        }
+//        // To check for correctness enable: self.tableView.reloadData()
+//    }
+    
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
             let filename = "\(workout?.name.description ?? "workout").wt"
@@ -140,34 +159,13 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         }
     }
     @IBAction func addTimer(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add Timer to \(self.title ?? "Workout")", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        print("add")
+        let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddTimer") as! AddTimerViewController
+        referenceViewController.timerTableViewController = self
+        referenceViewController.transitioningDelegate = self
+        referenceViewController.modalPresentationStyle = .custom
         
-        alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Timer Name"
-            textField.keyboardType = UIKeyboardType.alphabet
-            textField.autocapitalizationType = UITextAutocapitalizationType.words
-        })
-        alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Timer Duration"
-            textField.keyboardType = UIKeyboardType.numberPad
-            
-        })
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
-            
-            if let name = alert.textFields?.first?.text, let duration = alert.textFields?[1].text {
-                let d = Double.init(duration)
-                self.workout?.timers.append(Timer(name: name, time: d!, color: "Blue"))
-                
-                self.workoutController.saveWorkoutsData()
-                self.workoutController.tableView.reloadData()
-                
-                self.tableView.reloadData()
-                WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
-            }
-        }))
-        
-        self.present(alert, animated: true)
+        self.present(referenceViewController, animated: true, completion: nil)
         
     }
     @IBAction func playPause(_ sender: UIBarButtonItem) {
@@ -321,10 +319,22 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
      }
      */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        timer.invalidate()
         DispatchQueue.main.async {
             self.playPauseButton.isEnabled = false
             self.randomButton.isEnabled = false
         }
         setTimerToIndex(index: indexPath.row)
+    }
+ 
+}
+extension TimersTableViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?,
+        source: UIViewController)
+        -> UIPresentationController? {
+            return AddTimerPresentationController(
+                presentedViewController: presented, presenting: presenting)
     }
 }

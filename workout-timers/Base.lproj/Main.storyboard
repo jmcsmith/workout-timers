@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -356,6 +356,102 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujN-v0-jSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1933.5999999999999" y="130.88455772113943"/>
+        </scene>
+        <!--Add Timer View Controller-->
+        <scene sceneID="zAx-Xr-LTf">
+            <objects>
+                <viewController storyboardIdentifier="AddTimer" id="f7X-B7-MVb" customClass="AddTimerViewController" customModule="workout_timers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="93t-EV-7C2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Timer Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4a8-Pc-El3">
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvU-yO-qmE">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="lmz-IZ-1Wl">
+                                        <connections>
+                                            <action selector="cancel:" destination="f7X-B7-MVb" id="aVL-4J-Xv5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5e4-hn-2FB"/>
+                                    <barButtonItem style="plain" id="kc6-Vy-Cep">
+                                        <view key="customView" contentMode="scaleToFill" id="T3T-n8-pNn">
+                                            <rect key="frame" x="105" y="5.5" width="165" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71c-FZ-HBh">
+                                                    <rect key="frame" x="43" y="6" width="79" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="71c-FZ-HBh" firstAttribute="centerY" secondItem="T3T-n8-pNn" secondAttribute="centerY" id="Jx6-JB-3AX"/>
+                                                <constraint firstItem="71c-FZ-HBh" firstAttribute="centerX" secondItem="T3T-n8-pNn" secondAttribute="centerX" id="QsW-x4-8D6"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4qZ-aF-VlU"/>
+                                    <barButtonItem title="Add" id="jmw-kQ-8zd">
+                                        <connections>
+                                            <action selector="add:" destination="f7X-B7-MVb" id="heY-Ij-ZvQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Timer Duration" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-hK-LFp">
+                                <rect key="frame" x="8" y="110" width="359" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NXm-oj-79a">
+                                <rect key="frame" x="8" y="148" width="359" height="29"/>
+                                <segments>
+                                    <segment title="Green"/>
+                                    <segment title="Pink"/>
+                                    <segment title="Blue"/>
+                                    <segment title="Yellow"/>
+                                    <segment title="Orange"/>
+                                </segments>
+                                <connections>
+                                    <action selector="colorValueChanged:" destination="f7X-B7-MVb" eventType="valueChanged" id="pdr-ta-xRo"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MRw-hK-LFp" firstAttribute="leading" secondItem="vyF-Jp-May" secondAttribute="leading" constant="8" id="1SY-UD-wvi"/>
+                            <constraint firstItem="vyF-Jp-May" firstAttribute="trailing" secondItem="4a8-Pc-El3" secondAttribute="trailing" constant="8" id="1ja-uD-8uA"/>
+                            <constraint firstItem="MRw-hK-LFp" firstAttribute="top" secondItem="4a8-Pc-El3" secondAttribute="bottom" constant="8" id="8dZ-Z0-oNx"/>
+                            <constraint firstItem="BvU-yO-qmE" firstAttribute="top" secondItem="vyF-Jp-May" secondAttribute="top" id="Mwx-sr-9Rz"/>
+                            <constraint firstItem="4a8-Pc-El3" firstAttribute="leading" secondItem="vyF-Jp-May" secondAttribute="leading" constant="8" id="Ujj-I2-tqG"/>
+                            <constraint firstAttribute="trailing" secondItem="BvU-yO-qmE" secondAttribute="trailing" id="YTj-Wc-FGq"/>
+                            <constraint firstItem="NXm-oj-79a" firstAttribute="top" secondItem="MRw-hK-LFp" secondAttribute="bottom" constant="8" id="ZTv-ED-iEj"/>
+                            <constraint firstItem="4a8-Pc-El3" firstAttribute="top" secondItem="BvU-yO-qmE" secondAttribute="bottom" constant="8" id="hID-QT-tQA"/>
+                            <constraint firstItem="vyF-Jp-May" firstAttribute="trailing" secondItem="NXm-oj-79a" secondAttribute="trailing" constant="8" id="hvH-Gr-yQ2"/>
+                            <constraint firstItem="BvU-yO-qmE" firstAttribute="leading" secondItem="93t-EV-7C2" secondAttribute="leading" id="iNb-lV-GMy"/>
+                            <constraint firstItem="NXm-oj-79a" firstAttribute="leading" secondItem="vyF-Jp-May" secondAttribute="leading" constant="8" id="rK8-iw-AUR"/>
+                            <constraint firstItem="vyF-Jp-May" firstAttribute="trailing" secondItem="MRw-hK-LFp" secondAttribute="trailing" constant="8" id="tI1-ET-EfE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vyF-Jp-May"/>
+                    </view>
+                    <connections>
+                        <outlet property="timerColor" destination="NXm-oj-79a" id="TL5-Mp-eaX"/>
+                        <outlet property="timerDuration" destination="MRw-hK-LFp" id="3xJ-gD-vtF"/>
+                        <outlet property="timerName" destination="4a8-Pc-El3" id="ibS-ok-1tm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gie-Ku-Wat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dLO-vZ-fST">
