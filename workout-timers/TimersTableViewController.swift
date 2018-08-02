@@ -58,7 +58,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timerCell", for: indexPath) as! TimerTableViewCell
         cell.timerName.text = workout?.timers[indexPath.row].name
-        cell.timerTime.text = workout?.timers[indexPath.row].time.description
+        cell.timerTime.text = "\(workout?.timers[indexPath.row].time.description ?? "0.0")s"
         cell.progressView.layer.cornerRadius = 10
         cell.progressView.clipsToBounds = true
         var backgroundColor = UIColor.lightGray

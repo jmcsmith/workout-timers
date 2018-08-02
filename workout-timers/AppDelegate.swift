@@ -120,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                 workoutsTableViewController.workouts = currentWorkouts
             }
             workoutsTableViewController.tableView.reloadData()
+            navigationController.popToRootViewController(animated: true)
             return true
         } catch {
             print(error)

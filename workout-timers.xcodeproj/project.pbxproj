@@ -21,7 +21,6 @@
 		EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40877F20CA1FF400790ECE /* ExtensionDelegate.swift */; };
 		EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40878120CA1FF400790ECE /* NotificationController.swift */; };
 		EE40878420CA1FF500790ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE40878320CA1FF500790ECE /* Assets.xcassets */; };
-		EE40878920CA1FF500790ECE /* workout-timers-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EE40876C20CA1FF200790ECE /* workout-timers-watch.app */; };
 		EE72768220DBD74C00A69A86 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768120DBD74C00A69A86 /* AddWorkoutViewController.swift */; };
 		EE72768420DBEB2500A69A86 /* AddWorkoutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */; };
 		EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */; };
@@ -53,13 +52,6 @@
 			remoteGlobalIDString = EE40877720CA1FF400790ECE;
 			remoteInfo = "workout-timers-watch Extension";
 		};
-		EE40878720CA1FF500790ECE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE91EBE220AF28F8004A70C0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EE40876B20CA1FF200790ECE;
-			remoteInfo = "workout-timers-watch";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,7 +72,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				EE40878920CA1FF500790ECE /* workout-timers-watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +274,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EE40878820CA1FF500790ECE /* PBXTargetDependency */,
 			);
 			name = "workout-timers";
 			productName = "workout-timers";
@@ -421,11 +411,6 @@
 			isa = PBXTargetDependency;
 			target = EE40877720CA1FF400790ECE /* workout-timers-watch Extension */;
 			targetProxy = EE40877A20CA1FF400790ECE /* PBXContainerItemProxy */;
-		};
-		EE40878820CA1FF500790ECE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EE40876B20CA1FF200790ECE /* workout-timers-watch */;
-			targetProxy = EE40878720CA1FF500790ECE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
