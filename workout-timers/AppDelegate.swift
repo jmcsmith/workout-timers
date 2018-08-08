@@ -112,13 +112,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                     return true
             }
             let defaults = UserDefaults(suiteName: "group.workouttimers")
-            var currentWorkouts: Workouts
+            var currentWorkouts: Workouts = []
             if let data = defaults?.data(forKey: "workoutData"), let wo = try? Workouts.init(data: data) {
                 currentWorkouts = wo
-                currentWorkouts.append(workout)
-                try? defaults?.set(currentWorkouts.jsonData(), forKey: "workoutData")
-                workoutsTableViewController.workouts = currentWorkouts
             }
+            currentWorkouts.append(workout)
+            try? defaults?.set(currentWorkouts.jsonData(), forKey: "workoutData")
+            workoutsTableViewController.workouts = currentWorkouts
             workoutsTableViewController.tableView.reloadData()
             navigationController.popToRootViewController(animated: true)
             return true
