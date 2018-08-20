@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddWorkoutViewController: UIViewController {
+class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var workoutColor: UISegmentedControl!
@@ -18,11 +18,36 @@ class AddWorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardDidShow, object: nil)
+        
         workoutName.becomeFirstResponder()
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
-
+        workoutName.delegate = self
         // Do any additional setup after loading the view.
     }
+    @objc func adjustViewSize(_ notification: Notification){
+        self.view.sizeToFit()
+        print(self.view.frame.size)
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            print("height: \(keyboardHeight)")
+            var newFrame = self.view.frame
+            newFrame.origin.y -= keyboardHeight
+            // add 100 to y's current value
+            DispatchQueue.main.async {
+                
+                
+                self.view.frame = newFrame
+                self.view.setNeedsLayout()
+                self.view.layoutSubviews()
+                print(self.view.frame.size)
+                print(self.view.frame.origin)
+            }
+        }
+        
+    }
+    
     @IBAction func cancel(_ sender: Any) {
         workoutName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
@@ -41,8 +66,12 @@ class AddWorkoutViewController: UIViewController {
         
         updateSegmentedControlColor(for: sender.selectedSegmentIndex)
         
-        
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       self.add(self)
+        return true
+    }
+    
     func updateSegmentedControlColor(for selectedIndex: Int){
         switch selectedIndex {
         case 0:

@@ -78,6 +78,17 @@ class WorkoutsTableViewController: UITableViewController {
     }
     
     @IBAction func add(_ sender: Any) {
+        // get your window screen size
+        let screenRect = UIScreen.main.bounds
+        //create a new view with the same size
+        let coverView = UIView(frame: screenRect)
+        // change the background color to black and the opacity to 0.6
+        coverView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        // add this new view to your main view
+        
+        //self.view.addSubview(coverView)
+        
+        
         print("add")
         let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddWorkout") as! AddWorkoutViewController
         referenceViewController.workoutTableViewController = self
