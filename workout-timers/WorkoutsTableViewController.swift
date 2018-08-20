@@ -85,17 +85,20 @@ class WorkoutsTableViewController: UITableViewController {
         // change the background color to black and the opacity to 0.6
         coverView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         // add this new view to your main view
-        
+        let navigationController = self.navigationController?.view
+        navigationController?.addSubview(coverView)
         //self.view.addSubview(coverView)
         
         
         print("add")
         let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddWorkout") as! AddWorkoutViewController
+        referenceViewController.coverView = coverView
         referenceViewController.workoutTableViewController = self
         referenceViewController.transitioningDelegate = self
         referenceViewController.modalPresentationStyle = .custom
         
         self.present(referenceViewController, animated: true, completion: nil)
+
     }
     /*
      // Override to support conditional editing of the table view.

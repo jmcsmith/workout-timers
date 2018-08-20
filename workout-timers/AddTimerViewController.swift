@@ -8,23 +8,56 @@
 
 import UIKit
 
-class AddTimerViewController: UIViewController {
+class AddTimerViewController: UIViewController, UITextFieldDelegate {
     
     var timerTableViewController: TimersTableViewController? = nil
     @IBOutlet weak var timerName: UITextField!
     @IBOutlet weak var timerDuration: UITextField!
     @IBOutlet weak var timerColor: UISegmentedControl!
     
+
+        var coverView: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        
         timerName.becomeFirstResponder()
         updateSegmentedControlColor(for: timerColor.selectedSegmentIndex)
         
+        timerName.delegate = self
+        timerDuration.delegate = self
         // Do any additional setup after loading the view.
+    }
+    @objc func adjustViewSize(_ notification: Notification){
+        self.view.sizeToFit()
+        print(self.view.frame.size)
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            print("height: \(keyboardHeight)")
+            var newFrame = self.view.frame
+            newFrame.origin.y -= keyboardHeight
+            // add 100 to y's current value
+            DispatchQueue.main.async {
+                
+                
+                self.view.frame = newFrame
+                self.view.setNeedsLayout()
+                self.view.layoutSubviews()
+                print(self.view.frame.size)
+                print(self.view.frame.origin)
+            }
+        }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.add(self)
+        return true
     }
     @IBAction func cancel(_ sender: Any) {
         timerName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
+               coverView?.removeFromSuperview()
     }
     @IBAction func add(_ sender: Any) {
         //create timer
@@ -38,6 +71,7 @@ class AddTimerViewController: UIViewController {
         timerTableViewController?.tableView.reloadData()
         timerName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
+               coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
         

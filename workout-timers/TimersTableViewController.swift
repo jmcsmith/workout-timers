@@ -160,7 +160,18 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     }
     @IBAction func addTimer(_ sender: UIBarButtonItem) {
         print("add")
+        
+        let screenRect = UIScreen.main.bounds
+        //create a new view with the same size
+        let coverView = UIView(frame: screenRect)
+        // change the background color to black and the opacity to 0.6
+        coverView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        // add this new view to your main view
+        let navigationController = self.navigationController?.view
+        navigationController?.addSubview(coverView)
+        
         let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddTimer") as! AddTimerViewController
+        referenceViewController.coverView = coverView
         referenceViewController.timerTableViewController = self
         referenceViewController.transitioningDelegate = self
         referenceViewController.modalPresentationStyle = .custom

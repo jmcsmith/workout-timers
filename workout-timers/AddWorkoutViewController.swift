@@ -15,10 +15,11 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var workoutType: UISegmentedControl!
     
     var workoutTableViewController: WorkoutsTableViewController? = nil
+    var coverView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
         
         workoutName.becomeFirstResponder()
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
@@ -50,6 +51,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func cancel(_ sender: Any) {
         workoutName.resignFirstResponder()
+        coverView?.removeFromSuperview()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func add(_ sender: Any) {
@@ -61,6 +63,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
         workoutTableViewController?.tableView.reloadData()
         workoutName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
+        coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
         
