@@ -15,13 +15,15 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timerDuration: UITextField!
     @IBOutlet weak var timerColor: UISegmentedControl!
     
-
-        var coverView: UIView?
+    
+    var coverView: UIView?
+    var keyboardDisplayed = false
+    var oldKeyboardHeight: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         timerName.becomeFirstResponder()
         updateSegmentedControlColor(for: timerColor.selectedSegmentIndex)
         
@@ -31,22 +33,37 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func adjustViewSize(_ notification: Notification){
         self.view.sizeToFit()
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            var newFrame = self.view.frame
+        
+                newFrame.origin.y += oldKeyboardHeight
+                newFrame.origin.y -= keyboardHeight
+                keyboardDisplayed = true
+                oldKeyboardHeight = keyboardHeight
+            
+            DispatchQueue.main.async {
+                self.view.frame = newFrame
+                self.view.setNeedsLayout()
+                self.view.layoutSubviews()
+            }
+        }
+    }
+    @objc func hideKeyboard(_ notification: Notification){
+        self.view.sizeToFit()
         print(self.view.frame.size)
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             print("height: \(keyboardHeight)")
             var newFrame = self.view.frame
-            newFrame.origin.y -= keyboardHeight
+            newFrame.origin.y = 162
             // add 100 to y's current value
             DispatchQueue.main.async {
-                
-                
                 self.view.frame = newFrame
                 self.view.setNeedsLayout()
                 self.view.layoutSubviews()
-                print(self.view.frame.size)
-                print(self.view.frame.origin)
             }
         }
     }
@@ -57,7 +74,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(_ sender: Any) {
         timerName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
-               coverView?.removeFromSuperview()
+        coverView?.removeFromSuperview()
     }
     @IBAction func add(_ sender: Any) {
         //create timer
@@ -71,7 +88,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
         timerTableViewController?.tableView.reloadData()
         timerName.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
-               coverView?.removeFromSuperview()
+        coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
         

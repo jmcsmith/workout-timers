@@ -20,11 +20,25 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         workoutName.becomeFirstResponder()
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
         workoutName.delegate = self
         // Do any additional setup after loading the view.
+    }
+    @objc func hideKeyboard(_ notification: Notification){
+        self.view.sizeToFit()
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            var newFrame = self.view.frame
+            newFrame.origin.y = 162
+            // add 100 to y's current value
+            DispatchQueue.main.async {
+                self.view.frame = newFrame
+                self.view.setNeedsLayout()
+                self.view.layoutSubviews()
+            }
+        }
     }
     @objc func adjustViewSize(_ notification: Notification){
         self.view.sizeToFit()
@@ -34,16 +48,12 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
             let keyboardHeight = keyboardRectangle.height
             print("height: \(keyboardHeight)")
             var newFrame = self.view.frame
-            newFrame.origin.y -= keyboardHeight
+              newFrame.origin.y -= keyboardHeight
             // add 100 to y's current value
             DispatchQueue.main.async {
-                
-                
                 self.view.frame = newFrame
                 self.view.setNeedsLayout()
                 self.view.layoutSubviews()
-                print(self.view.frame.size)
-                print(self.view.frame.origin)
             }
         }
         
