@@ -52,11 +52,11 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func hideKeyboard(_ notification: Notification){
         self.view.sizeToFit()
-        print(self.view.frame.size)
+
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            print("height: \(keyboardHeight)")
+            
             var newFrame = self.view.frame
             newFrame.origin.y = 162
             // add 100 to y's current value
