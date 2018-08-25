@@ -17,6 +17,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     var workout: Workout?
     var workoutController: WorkoutsTableViewController = WorkoutsTableViewController()
     var isWorkoutPlaying = false
+    var workoutIsPaused = false
     var currentTimer = CurrentTimer()
     var timer: UIKit.Timer!
     
@@ -24,11 +25,18 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     
     let audioSession = AVAudioSession.sharedInstance()
     let speechSynthesizer = AVSpeechSynthesizer()
-    
+    @IBOutlet weak var toolbar: UIToolbar!
+    var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.play, target: self, action: #selector(play))
+    var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.pause, target: self, action: #selector(pause))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         speechSynthesizer.delegate = self
+        if isWorkoutPlaying {
+            toolbar.items?.insert(pauseButton, at: 2)
+        } else {
+            toolbar.items?.insert(playButton, at: 2)
+        }
         //self.tableView.isEditing = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -91,23 +99,23 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
-//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//        return .none
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-//        return false
-//    }
-//    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        if let movedObject = self.workout?.timers[sourceIndexPath.row] {
-//            self.workout?.timers.remove(at: sourceIndexPath.row)
-//            self.workout?.timers.insert(movedObject, at: destinationIndexPath.row)
-//            NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
-//            self.workoutController.saveWorkoutsData()
-//            WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
-//        }
-//        // To check for correctness enable: self.tableView.reloadData()
-//    }
+    //    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    //        return .none
+    //    }
+    //
+    //    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+    //        return false
+    //    }
+    //    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    //        if let movedObject = self.workout?.timers[sourceIndexPath.row] {
+    //            self.workout?.timers.remove(at: sourceIndexPath.row)
+    //            self.workout?.timers.insert(movedObject, at: destinationIndexPath.row)
+    //            NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
+    //            self.workoutController.saveWorkoutsData()
+    //            WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+    //        }
+    //        // To check for correctness enable: self.tableView.reloadData()
+    //    }
     
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
@@ -183,10 +191,41 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         
         DispatchQueue.main.async {
             self.resetTimers()
-            self.playPauseButton.isEnabled = false
+            //self.playPauseButton.isEnabled = false
+            self.toolbar.items?.remove(at: 2)
+            self.toolbar.items?.insert(self.pauseButton, at: 2)
             self.randomButton.isEnabled = false
         }
         setTimerToIndex(index: 0)
+    }
+    @objc func play() {
+        if workoutIsPaused {
+            resumeCurrentTimer()
+            workoutIsPaused = false
+            DispatchQueue.main.async {
+        
+                self.toolbar.items?.remove(at: 2)
+                self.toolbar.items?.insert(self.pauseButton, at: 2)
+                self.randomButton.isEnabled = false
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.resetTimers()
+                self.toolbar.items?.remove(at: 2)
+                self.toolbar.items?.insert(self.pauseButton, at: 2)
+                self.randomButton.isEnabled = false
+            }
+            setTimerToIndex(index: 0)
+        }
+    }
+    @objc func pause() {
+        workoutIsPaused = true
+        timer.invalidate()
+        DispatchQueue.main.async {
+            self.toolbar.items?.remove(at: 2)
+            self.toolbar.items?.insert(self.playButton, at: 2)
+            self.workoutIsPaused = true
+        }
     }
     func resetTimers(){
         if let count = workout?.timers.count {
@@ -212,7 +251,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
                 setTimerToIndex(index: (currentTimer.timerIndex + 1))
             } else {
                 DispatchQueue.main.async {
-                    self.playPauseButton.isEnabled = true
+                    self.toolbar.items?.remove(at: 2)
+                    self.toolbar.items?.insert(self.playButton, at: 2)
                     self.randomButton.isEnabled = true
                 }
             }
@@ -233,7 +273,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
                 setTimerToRandom()
             } else {
                 DispatchQueue.main.async {
-                    self.playPauseButton.isEnabled = true
+                    self.toolbar.items?.remove(at: 2)
+                    self.toolbar.items?.insert(self.playButton, at: 2)
                     self.randomButton.isEnabled = true
                 }
             }
@@ -253,6 +294,9 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             
         }
         
+        timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    }
+    func resumeCurrentTimer() {
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     func speakWorkout(forIndex: Int)  {
@@ -337,7 +381,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         }
         setTimerToIndex(index: indexPath.row)
     }
- 
+    
 }
 extension TimersTableViewController: UIViewControllerTransitioningDelegate {
     func presentationController(
