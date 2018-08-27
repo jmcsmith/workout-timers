@@ -37,6 +37,11 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         } else {
             toolbar.items?.insert(playButton, at: 2)
         }
+        
+        if workout?.timers.count == 0 {
+            toolbar.items?[2].isEnabled = false
+            randomButton.isEnabled = false
+        }
         //self.tableView.isEditing = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -97,6 +102,10 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             self.workoutController.tableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: .fade)
             WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+            if workout?.timers.count == 0 {
+                toolbar.items?[2].isEnabled = false
+                randomButton.isEnabled = false
+            }
         }
     }
     //    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -184,7 +193,10 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         referenceViewController.transitioningDelegate = self
         referenceViewController.modalPresentationStyle = .custom
         
-        self.present(referenceViewController, animated: true, completion: nil)
+        self.present(referenceViewController, animated: true, completion: {
+            self.randomButton.isEnabled = true
+            self.toolbar.items?[2].isEnabled = true
+        })
         
     }
     @IBAction func playPause(_ sender: UIBarButtonItem) {
@@ -203,7 +215,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             resumeCurrentTimer()
             workoutIsPaused = false
             DispatchQueue.main.async {
-        
+                
                 self.toolbar.items?.remove(at: 2)
                 self.toolbar.items?.insert(self.pauseButton, at: 2)
                 self.randomButton.isEnabled = false
