@@ -10,6 +10,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Voice-->
+        <scene sceneID="yEQ-dQ-xg9">
+            <objects>
+                <tableViewController title="Voice" id="LFK-xu-Yro" customClass="VoiceTableViewController" customModule="workout_timers" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f3S-gX-HHB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="voice" textLabel="lNf-wp-aDc" style="IBUITableViewCellStyleDefault" id="Om4-bq-8hT">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Om4-bq-8hT" id="9xH-d6-8B9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lNf-wp-aDc">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LFK-xu-Yro" id="GoM-XM-SDe"/>
+                            <outlet property="delegate" destination="LFK-xu-Yro" id="ndy-Vn-pX8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cG9-Pt-btN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="476" y="-551"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="4PN-ZU-J3u">
             <objects>
@@ -42,7 +79,7 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gay-Kp-9gs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yH5-ks-rDk" secondAttribute="leadingMargin" symbolic="YES" id="73e-PJ-4lT"/>
+                                                <constraint firstItem="gay-Kp-9gs" firstAttribute="leading" secondItem="yH5-ks-rDk" secondAttribute="leadingMargin" id="73e-PJ-4lT"/>
                                                 <constraint firstItem="gay-Kp-9gs" firstAttribute="top" secondItem="yH5-ks-rDk" secondAttribute="topMargin" id="8pY-VC-VYl"/>
                                                 <constraint firstItem="gay-Kp-9gs" firstAttribute="centerY" secondItem="ZWK-Df-MwL" secondAttribute="centerY" id="avj-ds-dP7"/>
                                                 <constraint firstItem="ZWK-Df-MwL" firstAttribute="top" secondItem="yH5-ks-rDk" secondAttribute="topMargin" constant="-5" id="df8-co-rRf"/>
@@ -51,6 +88,30 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="gay-Kp-9gs" secondAttribute="bottom" constant="1" id="xDG-Vi-dTB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="iV6-JZ-eKS">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iV6-JZ-eKS" id="5em-YI-LPe">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVh-Kq-67r">
+                                                    <rect key="frame" x="16" y="11" width="42.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rVh-Kq-67r" firstAttribute="top" secondItem="5em-YI-LPe" secondAttribute="topMargin" id="o8n-Rg-VdF"/>
+                                                <constraint firstItem="rVh-Kq-67r" firstAttribute="leading" secondItem="5em-YI-LPe" secondAttribute="leadingMargin" id="toI-3S-ejA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rVh-Kq-67r" secondAttribute="bottom" constant="1" id="vPe-6p-Q7K"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="LFK-xu-Yro" kind="show" id="HBL-JJ-ysI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

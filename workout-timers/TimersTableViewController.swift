@@ -208,14 +208,16 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             self.toolbar.items?.insert(self.pauseButton, at: 2)
             self.randomButton.isEnabled = false
         }
+        
         setTimerToIndex(index: 0)
     }
     @objc func play() {
+        
         if workoutIsPaused {
             resumeCurrentTimer()
             workoutIsPaused = false
             DispatchQueue.main.async {
-                
+   
                 self.toolbar.items?.remove(at: 2)
                 self.toolbar.items?.insert(self.pauseButton, at: 2)
                 self.randomButton.isEnabled = false
@@ -223,6 +225,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         } else {
             DispatchQueue.main.async {
                 self.resetTimers()
+
                 self.toolbar.items?.remove(at: 2)
                 self.toolbar.items?.insert(self.pauseButton, at: 2)
                 self.randomButton.isEnabled = false
@@ -231,9 +234,11 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         }
     }
     @objc func pause() {
+        
         workoutIsPaused = true
         timer.invalidate()
         DispatchQueue.main.async {
+          
             self.toolbar.items?.remove(at: 2)
             self.toolbar.items?.insert(self.playButton, at: 2)
             self.workoutIsPaused = true
@@ -247,6 +252,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
                 cell?.progressView.setProgress(0, animated: false)
             }
         }
+    
+        
     }
     @objc func updateTimer(){
         if currentTimer.currentTime > 0 {

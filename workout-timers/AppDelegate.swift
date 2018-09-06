@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
         setupWatchConnectivity()
         setupNotificationCenter()
+        UIApplication.shared.isIdleTimerDisabled = true
         return true
     }
     func setupWatchConnectivity(){

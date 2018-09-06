@@ -21,6 +21,7 @@
 		EE40878020CA1FF400790ECE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40877F20CA1FF400790ECE /* ExtensionDelegate.swift */; };
 		EE40878220CA1FF400790ECE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40878120CA1FF400790ECE /* NotificationController.swift */; };
 		EE40878420CA1FF500790ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE40878320CA1FF500790ECE /* Assets.xcassets */; };
+		EE634EEB21407C1E0075206D /* VoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE634EEA21407C1E0075206D /* VoiceTableViewController.swift */; };
 		EE72768220DBD74C00A69A86 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768120DBD74C00A69A86 /* AddWorkoutViewController.swift */; };
 		EE72768420DBEB2500A69A86 /* AddWorkoutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */; };
 		EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */; };
@@ -97,6 +98,7 @@
 		EE40878320CA1FF500790ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE40878520CA1FF500790ECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE40878620CA1FF500790ECE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		EE634EEA21407C1E0075206D /* VoiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTableViewController.swift; sourceTree = "<group>"; };
 		EE72768120DBD74C00A69A86 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutPresentationController.swift; sourceTree = "<group>"; };
 		EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */,
 				EE806372210F7350003A2AC2 /* AddTimerPresentationController.swift */,
 				EE806374210F7392003A2AC2 /* AddTimerViewController.swift */,
+				EE634EEA21407C1E0075206D /* VoiceTableViewController.swift */,
 			);
 			path = "workout-timers";
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				EE91EC0020AF2E68004A70C0 /* WorkoutsTableViewController.swift in Sources */,
 				EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */,
 				EE806373210F7350003A2AC2 /* AddTimerPresentationController.swift in Sources */,
+				EE634EEB21407C1E0075206D /* VoiceTableViewController.swift in Sources */,
 				EE72768420DBEB2500A69A86 /* AddWorkoutPresentationController.swift in Sources */,
 				EE16593E20F825B900167D4D /* UIColor+Custom.swift in Sources */,
 				EE0BFD0820CC38D30010531E /* WorkoutContext.swift in Sources */,
