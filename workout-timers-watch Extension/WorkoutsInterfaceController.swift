@@ -9,26 +9,24 @@
 import WatchKit
 import Foundation
 
-
 class WorkoutsInterfaceController: WKInterfaceController {
-    
+
     @IBOutlet var workoutsTable: WKInterfaceTable!
     let defaults = UserDefaults(suiteName: "group.workouttimers")
-    //var workouts: Workouts = [Workout(timers: [], name: "Test"), Workout(timers: [Timer(name: "Plank", time: 4.0, color: "Green")], name: "Planks")]
     var workouts: Workouts = []
     override func awake(withContext context: Any?) {
         //var workouts = WorkoutContext.sharedInstance.workouts
         WorkoutContext.sharedInstance.requestWorkoutsFromPhone()
-        if let json = defaults?.string(forKey: "workoutData"), let wo = try? Workouts.init(json) {
-            workouts = wo
+        if let json = defaults?.string(forKey: "workoutData"), let workout = try? Workouts.init(json) {
+            workouts = workout
         }
-        
+
         super.awake(withContext: context)
-        
+
         let rows = workoutsTable.numberOfRows
         let itemRows = NSIndexSet(indexesIn: NSRange(location: 0, length: workouts.count))
         workoutsTable.insertRows(at: itemRows as IndexSet, withRowType: "WorkoutRowType")
-        
+
         //workoutsTable.setNumberOfRows(workouts.count, withRowType: "WorkoutRowType")
         print(workoutsTable.numberOfRows)
         //        for (index, workout) in workouts.enumerated() {
@@ -37,20 +35,18 @@ class WorkoutsInterfaceController: WKInterfaceController {
         //            controller.workoutSubTitle.setText("\(workout.timers.count) timers")
         //
         //        }
-        for i in rows..<workoutsTable.numberOfRows {
-            // 1
-            let c = workoutsTable.rowController(at: i)
-            
-            // 2
-            if let controller = c as? WorkoutRowController {
-                controller.workoutName.setText(workouts[i].name)
-                controller.workoutSubTitle.setText("\(workouts[i].timers.count) timers")
+        for iterator in rows..<workoutsTable.numberOfRows {
+            let rowController = workoutsTable.rowController(at: iterator)
+            if let controller = rowController as? WorkoutRowController {
+                controller.workoutName.setText(workouts[iterator].name)
+                controller.workoutSubTitle.setText("\(workouts[iterator].timers.count) timers")
                 // 3
             }
         }
     }
-    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable,
+                                  rowIndex: Int) -> Any? {
         return workouts[rowIndex]
     }
-    
+
 }

@@ -10,50 +10,49 @@ import WatchKit
 import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
-    
-    let RequestWorkoutsFromPhone = "requestWorkoutsFromPhone"
+
+    let requestWorkoutsFromPhone = "requestWorkoutsFromPhone"
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
     }()
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState,
+                 error: Error?) {
         if let error = error {
             print("WC Session activation failed with error: \(error.localizedDescription)")
             return
         }
         print("WC Session activated with state: \(activationState.rawValue)")
     }
-    
-    
+
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         setupWatchConnectivity()
         setupNotificationCenter()
     }
     func setupWatchConnectivity() {
-        if WCSession.isSupported(){
+        if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
             session.activate()
         }
     }
     private func setupNotificationCenter() {
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: RequestWorkoutsFromPhone), object: nil, queue: nil) { (notification:Notification) -> Void in
+        var observer = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: requestWorkoutsFromPhone),
+                                                      object: nil, queue: nil) { (_: Notification) -> Void in
             print("Notification recieved")
             self.requestTimersFromPhone()
         }
     }
     func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
     }
-    
+
     func applicationWillResignActive() {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, etc.
+
     }
-    
+
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
-        // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
         for task in backgroundTasks {
             // Use a switch statement to check the task type
             if #available(watchOSApplicationExtension 5.0, *) {
@@ -63,7 +62,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                     // Snapshot tasks have a unique completion call, make sure to set your expiration date
-                    snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
+                    snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration:
+                        Date.distantFuture, userInfo: nil)
                 case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
                     // Be sure to complete the connectivity task once you’re done.
                     connectivityTask.setTaskCompletedWithSnapshot(false)
@@ -85,8 +85,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             }
         }
     }
-    
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         print("Received")
         let defaults = UserDefaults(suiteName: "group.workouttimers")
         if let timers = applicationContext["timers"] as? String {
@@ -97,13 +97,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             //                WorkoutContext.sharedInstance.workouts = w
             //            }
             DispatchQueue.main.async {
-                
-                WKInterfaceController.reloadRootPageControllers(withNames: ["WorkoutsInterfaceController"], contexts: nil, orientation: WKPageOrientation.vertical, pageIndex: 0)
-                
+
+                WKInterfaceController.reloadRootPageControllers(withNames: ["WorkoutsInterfaceController"],
+                                                                contexts: nil,
+                                                                orientation: WKPageOrientation.vertical,
+                                                                pageIndex: 0)
+
             }
-            
+
         }
-        
+
     }
     func requestTimersFromPhone() {
         print("Request Timers")
@@ -111,12 +114,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             let session = WCSession.default
             do {
                 let dictionary = ["request": "sendWorkouts"]
-                try session.updateApplicationContext(dictionary as [String : Any])
+                try session.updateApplicationContext(dictionary as [String: Any])
             } catch {
                 print("ERROR: \(error)")
             }
         }
     }
-    
-    
+
 }

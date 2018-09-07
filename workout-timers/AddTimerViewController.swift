@@ -9,40 +9,45 @@
 import UIKit
 
 class AddTimerViewController: UIViewController, UITextFieldDelegate {
-    
-    var timerTableViewController: TimersTableViewController? = nil
+
+    var timerTableViewController: TimersTableViewController?
     @IBOutlet weak var timerName: UITextField!
     @IBOutlet weak var timerDuration: UITextField!
     @IBOutlet weak var timerColor: UISegmentedControl!
-    
-    
+
     var coverView: UIView?
     var keyboardDisplayed = false
     var oldKeyboardHeight: CGFloat = 0.0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustViewSize),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(hideKeyboard),
+                                               name: Notification.Name.UIKeyboardWillHide,
+                                               object: nil)
         timerName.becomeFirstResponder()
         updateSegmentedControlColor(for: timerColor.selectedSegmentIndex)
-        
+
         timerName.delegate = self
         timerDuration.delegate = self
         // Do any additional setup after loading the view.
     }
-    @objc func adjustViewSize(_ notification: Notification){
+    @objc func adjustViewSize(_ notification: Notification) {
         self.view.sizeToFit()
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             var newFrame = self.view.frame
-        
+
                 newFrame.origin.y += oldKeyboardHeight
                 newFrame.origin.y -= keyboardHeight
                 keyboardDisplayed = true
                 oldKeyboardHeight = keyboardHeight
-            
+
             DispatchQueue.main.async {
                 self.view.frame = newFrame
                 self.view.setNeedsLayout()
@@ -50,13 +55,9 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    @objc func hideKeyboard(_ notification: Notification){
+    @objc func hideKeyboard(_ notification: Notification) {
         self.view.sizeToFit()
 
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
             var newFrame = self.view.frame
             newFrame.origin.y = 162
             // add 100 to y's current value
@@ -65,7 +66,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
                 self.view.setNeedsLayout()
                 self.view.layoutSubviews()
             }
-        }
+
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.add(self)
@@ -78,7 +79,9 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func add(_ sender: Any) {
         //create timer
-        let timer = Timer(name: timerName.text!, time: Double.init( timerDuration.text!) ?? 0.0, color: timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!)
+        let timer = Timer(name: timerName.text!,
+                          time: Double.init( timerDuration.text!) ?? 0.0,
+                          color: timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!)
         //save data
         timerTableViewController?.workout?.timers.append(timer)
         timerTableViewController?.workoutController.saveWorkoutsData()
@@ -91,12 +94,11 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
         coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
-        
+
         updateSegmentedControlColor(for: sender.selectedSegmentIndex)
-        
-        
+
     }
-    func updateSegmentedControlColor(for selectedIndex: Int){
+    func updateSegmentedControlColor(for selectedIndex: Int) {
         switch selectedIndex {
         case 0:
             timerColor.tintColor = UIColor.WorkoutGreen
@@ -112,5 +114,5 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
             timerColor.tintColor = UIColor.gray
         }
     }
-    
+
 }

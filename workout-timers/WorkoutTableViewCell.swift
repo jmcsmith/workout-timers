@@ -14,7 +14,7 @@ class WorkoutTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var view: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

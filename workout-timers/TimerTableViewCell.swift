@@ -13,7 +13,7 @@ class TimerTableViewCell: UITableViewCell {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var timerName: UILabel!
     @IBOutlet weak var timerTime: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

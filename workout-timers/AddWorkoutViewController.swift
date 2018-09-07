@@ -8,28 +8,33 @@
 
 import UIKit
 
-class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
-    
+class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
+
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var workoutColor: UISegmentedControl!
     @IBOutlet weak var workoutType: UISegmentedControl!
-    
-    var workoutTableViewController: WorkoutsTableViewController? = nil
+
+    var workoutTableViewController: WorkoutsTableViewController?
     var coverView: UIView?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustViewSize), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustViewSize),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(hideKeyboard),
+                                               name: Notification.Name.UIKeyboardWillHide,
+                                               object: nil)
         workoutName.becomeFirstResponder()
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
         workoutName.delegate = self
         // Do any additional setup after loading the view.
     }
-    @objc func hideKeyboard(_ notification: Notification){
+    @objc func hideKeyboard(_ notification: Notification) {
         self.view.sizeToFit()
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
+
             var newFrame = self.view.frame
             newFrame.origin.y = 162
             // add 100 to y's current value
@@ -38,9 +43,9 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
                 self.view.setNeedsLayout()
                 self.view.layoutSubviews()
             }
-        }
+
     }
-    @objc func adjustViewSize(_ notification: Notification){
+    @objc func adjustViewSize(_ notification: Notification) {
         self.view.sizeToFit()
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -54,9 +59,9 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
                 self.view.layoutSubviews()
             }
         }
-        
+
     }
-    
+
     @IBAction func cancel(_ sender: Any) {
         workoutName.resignFirstResponder()
         coverView?.removeFromSuperview()
@@ -64,7 +69,10 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
     }
     @IBAction func add(_ sender: Any) {
         //create workout
-        let workout = Workout(timers: [], name: workoutName.text!, type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!, color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
+        let workout = Workout(timers: [],
+                              name: workoutName.text!,
+                              type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!,
+                              color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
         //save data
         workoutTableViewController?.workouts.append(workout)
         workoutTableViewController?.saveWorkoutsData()
@@ -74,16 +82,16 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
         coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
-        
+
         updateSegmentedControlColor(for: sender.selectedSegmentIndex)
-        
+
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        self.add(self)
         return true
     }
-    
-    func updateSegmentedControlColor(for selectedIndex: Int){
+
+    func updateSegmentedControlColor(for selectedIndex: Int) {
         switch selectedIndex {
         case 0:
             workoutColor.tintColor = UIColor.WorkoutGreen
@@ -99,7 +107,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
             workoutColor.tintColor = UIColor.gray
         }
     }
-    
+
     /*
      // MARK: - Navigation
      
@@ -109,5 +117,5 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate{
      // Pass the selected object to the new view controller.
      }
      */
-    
+
 }
