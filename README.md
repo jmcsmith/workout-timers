@@ -4,7 +4,7 @@ Minimalistic timers app intended to be used for workouts. Timers start at the be
 
 <p align="left">
     <a href="https://swift.org">
-        <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4">
+        <img src="http://img.shields.io/badge/swift-4.2-brightgreen.svg" alt="Swift 4">
     </a>
 </p>
 
