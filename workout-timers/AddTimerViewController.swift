@@ -23,11 +23,11 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewSize),
-                                               name: Notification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(hideKeyboard),
-                                               name: Notification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         timerName.becomeFirstResponder()
         updateSegmentedControlColor(for: timerColor.selectedSegmentIndex)
@@ -38,7 +38,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func adjustViewSize(_ notification: Notification) {
         self.view.sizeToFit()
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             var newFrame = self.view.frame

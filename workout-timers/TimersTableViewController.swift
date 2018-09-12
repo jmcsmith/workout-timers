@@ -23,8 +23,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     let audioSession = AVAudioSession.sharedInstance()
     let speechSynthesizer = AVSpeechSynthesizer()
     @IBOutlet weak var toolbar: UIToolbar!
-    var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.play, target: self, action: #selector(play))
-    var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.pause, target: self, action: #selector(pause))
+    var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
+    var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
     override func viewDidLoad() {
         super.viewDidLoad()
         speechSynthesizer.delegate = self
@@ -74,7 +74,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         cell.progressView.progressTintColor = UIColor.lightGray
         return cell
     }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.workout?.timers.remove(at: indexPath.row)
@@ -261,7 +261,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.duckOthers)
+            try audioSession.setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback), with: AVAudioSession.CategoryOptions.duckOthers)
             try audioSession.setActive(true)
             speechSynthesizer.speak(speechUtterance)
         } catch {
@@ -294,4 +294,9 @@ extension TimersTableViewController: UIViewControllerTransitioningDelegate {
             return AddTimerPresentationController(
                 presentedViewController: presented, presenting: presenting)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

@@ -30,7 +30,7 @@ class WorkoutsTableViewController: UITableViewController {
         return workouts.count
     }
     override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCellEditingStyle,
+                            commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.workouts.remove(at: indexPath.row)
