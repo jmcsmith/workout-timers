@@ -9,17 +9,20 @@ Minimalistic timers app intended to be used for workouts. Timers start at the be
 </p>
 
 ## TODO
-* Colored workout cells?
-* Custom Workout cell
-* Custom Timer cell
-* Play button switch to pause when clicked
-* Colored Timer cell progress indicator
-* Start workout at any given cell
+* ~~Colored workout cells?~~
+* ~~Custom Workout cell~~
+* ~~Custom Timer cell~~
+* ~~Play button switch to pause when clicked~~
+* ~~Colored Timer cell progress indicator~~
+* ~~Start workout at any given cell~~
 * Rearrange Cells
-* Export workouts/timers as JSON
-* Speak timer name and duration when a new timer starts
+* ~~Export workouts/timers as JSON~~
+* ~~Speak timer name and duration when a new timer starts~~
 * Timer end sound?
 * Settings for speech and sounds
+* Background Timers with speech?
+* Use notifications to run timers
+* watchOS 5 work
 
 ## BUGS
 
