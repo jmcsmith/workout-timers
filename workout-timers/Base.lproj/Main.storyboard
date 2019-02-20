@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yPt-tP-hCI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -88,30 +88,6 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="gay-Kp-9gs" secondAttribute="bottom" constant="1" id="xDG-Vi-dTB"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="iV6-JZ-eKS">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iV6-JZ-eKS" id="5em-YI-LPe">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVh-Kq-67r">
-                                                    <rect key="frame" x="16" y="11" width="42.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="rVh-Kq-67r" firstAttribute="top" secondItem="5em-YI-LPe" secondAttribute="topMargin" id="o8n-Rg-VdF"/>
-                                                <constraint firstItem="rVh-Kq-67r" firstAttribute="leading" secondItem="5em-YI-LPe" secondAttribute="leadingMargin" id="toI-3S-ejA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="rVh-Kq-67r" secondAttribute="bottom" constant="1" id="vPe-6p-Q7K"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="LFK-xu-Yro" kind="show" id="HBL-JJ-ysI"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -219,6 +195,8 @@
                         <viewLayoutGuide key="safeArea" id="T5t-xR-nK0"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="gBy-2m-Vsn" id="unZ-fp-HCh"/>
+                        <outlet property="windowTitle" destination="XUy-VA-7Cd" id="8cS-En-aVD"/>
                         <outlet property="workoutColor" destination="fTD-Oa-aSq" id="IGh-d6-n7D"/>
                         <outlet property="workoutName" destination="SEh-FP-AZ0" id="Kvx-rL-ptq"/>
                         <outlet property="workoutType" destination="Fk1-Ly-hNQ" id="xR7-0P-Pbk"/>

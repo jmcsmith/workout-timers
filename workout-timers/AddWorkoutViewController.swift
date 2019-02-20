@@ -16,7 +16,12 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
 
     var workoutTableViewController: WorkoutsTableViewController?
     var coverView: UIView?
-
+    @IBOutlet weak var windowTitle: UILabel!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    var isEdit = false
+    var workoutIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
@@ -28,8 +33,22 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         workoutName.becomeFirstResponder()
+        if isEdit {
+            let workout = workoutTableViewController?.workouts[workoutIndex]
+            workoutName.text = workout?.name
+            //workoutColor.selectedSegmentIndex = workoutColor.segments
+            if let color = workout?.color {
+                workoutColor.selectedSegmentIndex = workoutColor.indexFor(title: color)
+            }
+            if let type = workout?.type {
+                workoutType.selectedSegmentIndex = workoutType.indexFor(title: type)
+            }
+            windowTitle.text = "Edit Workout"
+            addButton.title = "Save"
+        }
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
         workoutName.delegate = self
+      
         // Do any additional setup after loading the view.
     }
     @objc func hideKeyboard(_ notification: Notification) {
@@ -68,13 +87,20 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func add(_ sender: Any) {
-        //create workout
-        let workout = Workout(timers: [],
-                              name: workoutName.text!,
-                              type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!,
-                              color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
-        //save data
-        workoutTableViewController?.workouts.append(workout)
+        if !isEdit {
+            //create workout
+            let workout = Workout(timers: [],
+                                  name: workoutName.text!,
+                                  type: workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!,
+                                  color: workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!)
+            //save data
+            workoutTableViewController?.workouts.append(workout)
+        } else {
+            let workout = workoutTableViewController?.workouts[workoutIndex]
+            workout?.name = workoutName.text!
+            workout?.type = workoutType.titleForSegment(at: workoutType.selectedSegmentIndex)!
+            workout?.color = workoutColor.titleForSegment(at: workoutColor.selectedSegmentIndex)!
+        }
         workoutTableViewController?.saveWorkoutsData()
         workoutTableViewController?.tableView.reloadData()
         workoutName.resignFirstResponder()

@@ -48,9 +48,9 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         return (workout?.timers.count)!
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         // swiftlint:disable force_cast
+        // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "timerCell", for: indexPath) as! TimerTableViewCell
-         // swiftlint:enable force_cast
+        // swiftlint:enable force_cast
         cell.timerName.text = workout?.timers[indexPath.row].name
         cell.timerTime.text = "\(workout?.timers[indexPath.row].time.description ?? "0.0")s"
         cell.progressView.layer.cornerRadius = 10
@@ -88,6 +88,32 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             }
         }
     }
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let renameAction = UIContextualAction(style: .normal, title: "Rename") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            let timer = self.workout?.timers[indexPath.row]
+            let name = timer?.name ?? "Timer"
+            let alert = UIAlertController(title: "Rename \(name)", message: "Please Enter new timer name.", preferredStyle: .alert)
+            alert.addTextField()
+            
+            let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned alert] _ in
+                let answer = alert.textFields![0]
+                // do something interesting with "answer" here
+                if let newName = answer.text {
+                    self.workout?.timers[indexPath.row].name = newName
+                    self.workoutController.saveWorkoutsData()
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(submitAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true)
+            completionHandler(true)
+        }
+        renameAction.backgroundColor = UIColor.gray
+        return UISwipeActionsConfiguration(actions: [renameAction])
+    }
+    
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
             let filename = "\(workout?.name.description ?? "workout").wt"
@@ -261,7 +287,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         do {
-            try audioSession.setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback), with: AVAudioSession.CategoryOptions.duckOthers)
+            try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default ,options: AVAudioSession.CategoryOptions.duckOthers)
             try audioSession.setActive(true)
             speechSynthesizer.speak(speechUtterance)
         } catch {
@@ -298,5 +324,5 @@ extension TimersTableViewController: UIViewControllerTransitioningDelegate {
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
+    return input.rawValue
 }

@@ -42,6 +42,7 @@
 		EE9A8E6A20D3F2FC00E9E8FD /* HeaderRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */; };
 		EE9A8E6B20D3FA6800E9E8FD /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
 		EEC2D9E420C6E6EC0065F170 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */; };
+		EEED17F8221DA78D00AD53CA /* UISegmentedControl+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED17F7221DA78D00AD53CA /* UISegmentedControl+Utils.swift */; };
 		EEFE121A20C7673800A46267 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE121920C7673800A46267 /* TimerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowController.swift; sourceTree = "<group>"; };
 		EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRowController.swift; sourceTree = "<group>"; };
 		EEC2D9E320C6E6EC0065F170 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		EEED17F7221DA78D00AD53CA /* UISegmentedControl+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Utils.swift"; sourceTree = "<group>"; };
 		EEFE121920C7673800A46267 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				EE0BFD0620CC281B0010531E /* WorkoutContext.swift */,
 				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 				EE16593D20F825B900167D4D /* UIColor+Custom.swift */,
+				EEED17F7221DA78D00AD53CA /* UISegmentedControl+Utils.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -185,11 +188,11 @@
 		EE91EBE120AF28F8004A70C0 = {
 			isa = PBXGroup;
 			children = (
+				EE91EBEB20AF28F8004A70C0 /* Products */,
 				EE0BFD0520CC27E00010531E /* Shared */,
 				EE91EBEC20AF28F8004A70C0 /* workout-timers */,
 				EE40876D20CA1FF200790ECE /* workout-timers-watch */,
 				EE40877C20CA1FF400790ECE /* workout-timers-watch Extension */,
-				EE91EBEB20AF28F8004A70C0 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -425,6 +428,7 @@
 				EE72768220DBD74C00A69A86 /* AddWorkoutViewController.swift in Sources */,
 				EE806375210F7392003A2AC2 /* AddTimerViewController.swift in Sources */,
 				EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */,
+				EEED17F8221DA78D00AD53CA /* UISegmentedControl+Utils.swift in Sources */,
 				EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */,
 				EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */,
 			);

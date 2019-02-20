@@ -39,6 +39,52 @@ class WorkoutsTableViewController: UITableViewController {
             WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let renameAction = UIContextualAction(style: .normal, title: "Edit") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            let workout = self.workouts[indexPath.row]
+//            let name = workout.name
+//            let alert = UIAlertController(title: "Rename \(name)", message: "Please Enter new Workout name.", preferredStyle: .alert)
+//            alert.addTextField()
+//
+//            let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned alert] _ in
+//                let answer = alert.textFields![0]
+//                // do something interesting with "answer" here
+//                if let newName = answer.text {
+//                    self.workouts[indexPath.row].name  = newName
+//                    self.saveWorkoutsData()
+//                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+//                }
+//            }
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            alert.addAction(submitAction)
+//            alert.addAction(cancelAction)
+//            self.present(alert, animated: true)
+            // get your window screen size
+            let screenRect = UIScreen.main.bounds
+            //create a new view with the same size
+            let coverView = UIView(frame: screenRect)
+            // change the background color to black and the opacity to 0.6
+            coverView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            // add this new view to your main view
+            let navigationController = self.navigationController?.view
+            navigationController?.addSubview(coverView)
+            //self.view.addSubview(coverView)
+            print("edit")
+            if let referenceViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddWorkout")
+                as? AddWorkoutViewController {
+                referenceViewController.isEdit = true
+                referenceViewController.workoutIndex = indexPath.row
+                referenceViewController.coverView = coverView
+                referenceViewController.workoutTableViewController = self
+                referenceViewController.transitioningDelegate = self
+                referenceViewController.modalPresentationStyle = .custom
+                self.present(referenceViewController, animated: true, completion: nil)
+            }
+            completionHandler(true)
+        }
+        renameAction.backgroundColor = UIColor.gray
+        return UISwipeActionsConfiguration(actions: [renameAction])
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutcell", for: indexPath) as! WorkoutTableViewCell
