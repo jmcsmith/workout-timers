@@ -215,7 +215,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="workoutcell" rowHeight="69" id="VM7-Wn-otA" customClass="WorkoutTableViewCell" customModule="workout_timers" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="workoutcell" rowHeight="69" id="VM7-Wn-otA" customClass="WorkoutTableViewCell" customModule="workout_timers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VM7-Wn-otA" id="BoW-4N-VKl">
@@ -223,7 +223,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UF-uT-vTW">
-                                            <rect key="frame" x="4" y="4" width="367" height="65"/>
+                                            <rect key="frame" x="4" y="2" width="367" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx2-0x-Kne">
                                                     <rect key="frame" x="8" y="8" width="351" height="20.5"/>
@@ -259,8 +259,8 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="7UF-uT-vTW" secondAttribute="bottom" id="921-zu-48K"/>
-                                        <constraint firstItem="7UF-uT-vTW" firstAttribute="top" secondItem="BoW-4N-VKl" secondAttribute="top" constant="4" id="V3G-WE-0aD"/>
+                                        <constraint firstAttribute="bottom" secondItem="7UF-uT-vTW" secondAttribute="bottom" constant="2" id="921-zu-48K"/>
+                                        <constraint firstItem="7UF-uT-vTW" firstAttribute="top" secondItem="BoW-4N-VKl" secondAttribute="top" constant="2" id="V3G-WE-0aD"/>
                                         <constraint firstItem="7UF-uT-vTW" firstAttribute="leading" secondItem="BoW-4N-VKl" secondAttribute="leading" constant="4" id="eNt-TX-TLU"/>
                                         <constraint firstAttribute="trailing" secondItem="7UF-uT-vTW" secondAttribute="trailing" constant="4" id="sbD-7M-6d3"/>
                                     </constraints>
