@@ -478,9 +478,11 @@
                         <viewLayoutGuide key="safeArea" id="vyF-Jp-May"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="jmw-kQ-8zd" id="yJB-hQ-2Ce"/>
                         <outlet property="timerColor" destination="NXm-oj-79a" id="TL5-Mp-eaX"/>
                         <outlet property="timerDuration" destination="MRw-hK-LFp" id="3xJ-gD-vtF"/>
                         <outlet property="timerName" destination="4a8-Pc-El3" id="ibS-ok-1tm"/>
+                        <outlet property="windowTitle" destination="71c-FZ-HBh" id="usu-h2-HZI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gie-Ku-Wat" userLabel="First Responder" sceneMemberID="firstResponder"/>

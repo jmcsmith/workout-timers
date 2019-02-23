@@ -25,6 +25,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     @IBOutlet weak var toolbar: UIToolbar!
     var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
     var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         speechSynthesizer.delegate = self
@@ -90,24 +91,28 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     }
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let renameAction = UIContextualAction(style: .normal, title: "Rename") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            let timer = self.workout?.timers[indexPath.row]
-            let name = timer?.name ?? "Timer"
-            let alert = UIAlertController(title: "Rename \(name)", message: "Please Enter new timer name.", preferredStyle: .alert)
-            alert.addTextField()
             
-            let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned alert] _ in
-                let answer = alert.textFields![0]
-                // do something interesting with "answer" here
-                if let newName = answer.text {
-                    self.workout?.timers[indexPath.row].name = newName
-                    self.workoutController.saveWorkoutsData()
-                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-                }
+            let screenRect = UIScreen.main.bounds
+            //create a new view with the same size
+            let coverView = UIView(frame: screenRect)
+            // change the background color to black and the opacity to 0.6
+            coverView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            // add this new view to your main view
+            let navigationController = self.navigationController?.view
+            navigationController?.addSubview(coverView)
+            if let referenceViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddTimer") as? AddTimerViewController {
+                referenceViewController.coverView = coverView
+                referenceViewController.timerTableViewController = self
+                referenceViewController.isEdit = true
+                referenceViewController.timerIndex = indexPath.row
+                referenceViewController.transitioningDelegate = self
+                referenceViewController.modalPresentationStyle = .custom
+                self.present(referenceViewController, animated: true, completion: {
+                    self.randomButton.isEnabled = true
+                    self.toolbar.items?[2].isEnabled = true
+                })
+                
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(submitAction)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true)
             completionHandler(true)
         }
         renameAction.backgroundColor = UIColor.gray
@@ -287,7 +292,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         let speechUtterance = AVSpeechUtterance(string: (workout?.timers[forIndex].name)!)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         do {
-            try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default ,options: AVAudioSession.CategoryOptions.duckOthers)
+            try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.duckOthers)
             try audioSession.setActive(true)
             speechSynthesizer.speak(speechUtterance)
         } catch {

@@ -11,12 +11,15 @@ import UIKit
 class WorkoutsTableViewController: UITableViewController {
     var defaults = UserDefaults(suiteName: "group.workouttimers")
     var workouts: [Workout] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let data = defaults?.data(forKey: "workoutData"),
             let workout = try? Workouts.init(data: data) {
             workouts = workout
         }
+
+
         //WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
     }
     override func didReceiveMemoryWarning() {
@@ -39,26 +42,10 @@ class WorkoutsTableViewController: UITableViewController {
             WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
         }
     }
+
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let renameAction = UIContextualAction(style: .normal, title: "Edit") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            let workout = self.workouts[indexPath.row]
-//            let name = workout.name
-//            let alert = UIAlertController(title: "Rename \(name)", message: "Please Enter new Workout name.", preferredStyle: .alert)
-//            alert.addTextField()
-//
-//            let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned alert] _ in
-//                let answer = alert.textFields![0]
-//                // do something interesting with "answer" here
-//                if let newName = answer.text {
-//                    self.workouts[indexPath.row].name  = newName
-//                    self.saveWorkoutsData()
-//                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-//                }
-//            }
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//            alert.addAction(submitAction)
-//            alert.addAction(cancelAction)
-//            self.present(alert, animated: true)
+
             // get your window screen size
             let screenRect = UIScreen.main.bounds
             //create a new view with the same size

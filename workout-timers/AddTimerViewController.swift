@@ -14,10 +14,15 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timerName: UITextField!
     @IBOutlet weak var timerDuration: UITextField!
     @IBOutlet weak var timerColor: UISegmentedControl!
-
+    @IBOutlet weak var windowTitle: UILabel!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     var coverView: UIView?
     var keyboardDisplayed = false
     var oldKeyboardHeight: CGFloat = 0.0
+    
+    var isEdit = false
+    var timerIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,19 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         timerName.becomeFirstResponder()
+        if isEdit {
+            let timer = timerTableViewController?.workout?.timers[timerIndex]
+            timerName.text = timer?.name
+            //workoutColor.selectedSegmentIndex = workoutColor.segments
+            if let color = timer?.color {
+                timerColor.selectedSegmentIndex = timerColor.indexFor(title: color)
+            }
+            if let duration = timer?.time {
+                timerDuration.text = duration.description
+            }
+            windowTitle.text = "Edit Timer"
+            addButton.title = "Save"
+        }
         updateSegmentedControlColor(for: timerColor.selectedSegmentIndex)
 
         timerName.delegate = self
@@ -78,15 +96,21 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
         coverView?.removeFromSuperview()
     }
     @IBAction func add(_ sender: Any) {
-        //create timer
-        let timer = Timer(name: timerName.text!,
-                          time: Double.init( timerDuration.text!) ?? 0.0,
-                          color: timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!)
-        //save data
-        timerTableViewController?.workout?.timers.append(timer)
+        if !isEdit {
+            //create timer
+            let timer = Timer(name: timerName.text!,
+                              time: Double.init( timerDuration.text!) ?? 0.0,
+                              color: timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!)
+            //save data
+            timerTableViewController?.workout?.timers.append(timer)
+        } else {
+            let timer = timerTableViewController?.workout?.timers[timerIndex]
+            timer?.name = timerName.text!
+            timer?.time = Double.init( timerDuration.text!) ?? 0.0
+            timer?.color = timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!
+        }
         timerTableViewController?.workoutController.saveWorkoutsData()
-        timerTableViewController?.workoutController.tableView.reloadData()
-        timerTableViewController?.tableView.reloadData()
+        timerTableViewController?.workoutController.tableView.reloadRows(at: [IndexPath.init(row: timerIndex, section: 0)], with: .automatic)
         //save
         timerTableViewController?.tableView.reloadData()
         timerName.resignFirstResponder()
