@@ -25,10 +25,13 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     @IBOutlet weak var toolbar: UIToolbar!
     var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
     var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
+        fileprivate var longPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         speechSynthesizer.delegate = self
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        tableView.addGestureRecognizer(longPressGesture)
         if isWorkoutPlaying {
             toolbar.items?.insert(pauseButton, at: 2)
         } else {
@@ -118,7 +121,83 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         renameAction.backgroundColor = UIColor.gray
         return UISwipeActionsConfiguration(actions: [renameAction])
     }
-    
+    func snapshopOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
+        UIGraphicsEndImageContext()
+        let cellSnapshot: UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+        return cellSnapshot
+    }
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        let longPress = gesture as UILongPressGestureRecognizer
+        let state = longPress.state
+        let locationInView = longPress.location(in: self.tableView)
+        var indexPath = self.tableView.indexPathForRow(at: locationInView)
+        switch state {
+        case .began:
+            let generator = UIImpactFeedbackGenerator(style: .heavy)
+            generator.impactOccurred()
+            if indexPath != nil {
+                Path.initialIndexPath = indexPath as IndexPath?
+                if let cell = self.tableView.cellForRow(at: indexPath!) as? TimerTableViewCell {
+                    My.cellSnapshot = snapshopOfCell(inputView: cell)
+                    var center = cell.center
+                    My.cellSnapshot!.center = center
+                    My.cellSnapshot!.alpha = 0.0
+                    self.tableView.addSubview(My.cellSnapshot!)
+                    UIView.animate(withDuration: 0.25,
+                                   animations: { () -> Void in
+                                    center.y = locationInView.y
+                                    My.cellSnapshot!.center = center
+                                    My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                                    My.cellSnapshot!.alpha = 0.98
+                                    cell.alpha = 0.0
+                    }, completion: { (finished) -> Void in
+                        if finished {
+                            cell.isHidden = true
+                        }
+                    })
+                }
+            }
+        case .changed:
+            var center = My.cellSnapshot!.center
+            center.y = locationInView.y
+            My.cellSnapshot!.center = center
+            if (indexPath != nil) && (indexPath != Path.initialIndexPath) {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+                self.workout?.timers.swapAt((indexPath?.row)!, (Path.initialIndexPath?.row)!)
+                self.workoutController.saveWorkoutsData()
+                self.tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+                Path.initialIndexPath = indexPath
+            }
+        default:
+            if let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as? TimerTableViewCell {
+                cell.isHidden = false
+                cell.alpha = 0.0
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    My.cellSnapshot!.center = (cell.center)
+                    My.cellSnapshot!.transform = CGAffineTransform.identity
+                    My.cellSnapshot!.alpha = 0.0
+                    cell.alpha = 1.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        let generator = UIImpactFeedbackGenerator(style: .heavy)
+                        generator.impactOccurred()
+                        Path.initialIndexPath = nil
+                        My.cellSnapshot!.removeFromSuperview()
+                        My.cellSnapshot = nil
+                    }
+                })
+            }
+        }
+    }
     @IBAction func shareWorkout(_ sender: UIBarButtonItem) {
         do {
             let filename = "\(workout?.name.description ?? "workout").wt"

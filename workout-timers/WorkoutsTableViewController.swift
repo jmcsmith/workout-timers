@@ -12,7 +12,6 @@ class WorkoutsTableViewController: UITableViewController {
     var defaults = UserDefaults(suiteName: "group.workouttimers")
     var workouts: [Workout] = []
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let data = defaults?.data(forKey: "workoutData"),
@@ -50,14 +49,9 @@ class WorkoutsTableViewController: UITableViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
     }
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let workout = workouts[sourceIndexPath.row]
-        workouts.remove(at: sourceIndexPath.row)
-        workouts.insert(workout, at: destinationIndexPath.row)
-        saveWorkoutsData()
-    }
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let renameAction = UIContextualAction(style: .normal, title: "Edit") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+        let renameAction = UIContextualAction(style: .normal, title: "Edit") {
+            (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
 
             // get your window screen size
             let screenRect = UIScreen.main.bounds
@@ -157,13 +151,12 @@ class WorkoutsTableViewController: UITableViewController {
     func saveWorkoutsData() {
         try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")
     }
-    
     func snapshopOfCell(inputView: UIView) -> UIView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
         UIGraphicsEndImageContext()
-        let cellSnapshot : UIView = UIImageView(image: image)
+        let cellSnapshot: UIView = UIImageView(image: image)
         cellSnapshot.layer.masksToBounds = false
         cellSnapshot.layer.cornerRadius = 0.0
         cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
@@ -172,82 +165,68 @@ class WorkoutsTableViewController: UITableViewController {
         return cellSnapshot
     }
     @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
-        if let longPress = gesture as? UILongPressGestureRecognizer {
-            let state = longPress.state
-            let locationInView = longPress.location(in: self.tableView)
-            var indexPath = self.tableView.indexPathForRow(at: locationInView)
-            
-            struct My {
-                static var cellSnapshot : UIView? = nil
-            }
-            struct Path {
-                static var initialIndexPath : IndexPath? = nil
-            }
-            
-            switch state {
-            case .began:
-                if indexPath != nil {
-                    Path.initialIndexPath = indexPath as IndexPath?
-                    if let cell = self.tableView.cellForRow(at: indexPath!) as? WorkoutTableViewCell {
-                        My.cellSnapshot = snapshopOfCell(inputView: cell)
-                        var center = cell.center
-                        My.cellSnapshot!.center = center
-                        My.cellSnapshot!.alpha = 0.0
-                        self.tableView.addSubview(My.cellSnapshot!)
-                        
-                        UIView.animate(withDuration: 0.25,
-                                       animations: { () -> Void in
-                                        center.y = locationInView.y
-                                        My.cellSnapshot!.center = center
-                                        My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                                        My.cellSnapshot!.alpha = 0.98
-                                        cell.alpha = 0.0
-                                        
-                        }, completion: { (finished) -> Void in
-                            if finished {
-                                cell.isHidden = true
-                            }
-                        }
-                        )
-                    }
-                }
-            case .changed:
-                var center = My.cellSnapshot!.center
-                center.y = locationInView.y
-                My.cellSnapshot!.center = center
-                if (indexPath != nil) && (indexPath != Path.initialIndexPath) {
-                    self.workouts.swapAt((indexPath?.row)!, (Path.initialIndexPath?.row)!)
-                    saveWorkoutsData()
-                    print(Path.initialIndexPath?.row)
-                    self.tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-                    Path.initialIndexPath = indexPath
-                }
-            default:
-                if let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as? WorkoutTableViewCell {
-                    cell.isHidden = false
-                    cell.alpha = 0.0
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                        My.cellSnapshot!.center = (cell.center)
-                        My.cellSnapshot!.transform = CGAffineTransform.identity
-                        My.cellSnapshot!.alpha = 0.0
-                        cell.alpha = 1.0
+        let longPress = gesture as UILongPressGestureRecognizer
+        let state = longPress.state
+        let locationInView = longPress.location(in: self.tableView)
+        var indexPath = self.tableView.indexPathForRow(at: locationInView)
+        switch state {
+        case .began:
+            let generator = UIImpactFeedbackGenerator(style: .heavy)
+            generator.impactOccurred()
+            if indexPath != nil {
+                Path.initialIndexPath = indexPath as IndexPath?
+                if let cell = self.tableView.cellForRow(at: indexPath!) as? WorkoutTableViewCell {
+                    My.cellSnapshot = snapshopOfCell(inputView: cell)
+                    var center = cell.center
+                    My.cellSnapshot!.center = center
+                    My.cellSnapshot!.alpha = 0.0
+                    self.tableView.addSubview(My.cellSnapshot!)
+                    UIView.animate(withDuration: 0.25,
+                                   animations: { () -> Void in
+                                    center.y = locationInView.y
+                                    My.cellSnapshot!.center = center
+                                    My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                                    My.cellSnapshot!.alpha = 0.98
+                                    cell.alpha = 0.0
                     }, completion: { (finished) -> Void in
                         if finished {
-                            Path.initialIndexPath = nil
-                            My.cellSnapshot!.removeFromSuperview()
-                            My.cellSnapshot = nil
+                            cell.isHidden = true
                         }
                     })
                 }
             }
+        case .changed:
+            var center = My.cellSnapshot!.center
+            center.y = locationInView.y
+            My.cellSnapshot!.center = center
+            if (indexPath != nil) && (indexPath != Path.initialIndexPath) {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+                self.workouts.swapAt((indexPath?.row)!, (Path.initialIndexPath?.row)!)
+                saveWorkoutsData()
+                self.tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+                Path.initialIndexPath = indexPath
+            }
+        default:
+            if let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as? WorkoutTableViewCell {
+                cell.isHidden = false
+                cell.alpha = 0.0
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    My.cellSnapshot!.center = (cell.center)
+                    My.cellSnapshot!.transform = CGAffineTransform.identity
+                    My.cellSnapshot!.alpha = 0.0
+                    cell.alpha = 1.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        let generator = UIImpactFeedbackGenerator(style: .heavy)
+                        generator.impactOccurred()
+                        Path.initialIndexPath = nil
+                        My.cellSnapshot!.removeFromSuperview()
+                        My.cellSnapshot = nil
+                    }
+                })
+            }
         }
-    }
-    func animatePickingUpCell(cell: WorkoutTableViewCell?) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.allowUserInteraction, .beginFromCurrentState], animations: { () -> Void in
-            cell?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        }, completion: { finished in
-            
-        })
     }
 }
 extension WorkoutsTableViewController: UIViewControllerTransitioningDelegate {

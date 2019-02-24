@@ -25,6 +25,7 @@
 		EE72768220DBD74C00A69A86 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768120DBD74C00A69A86 /* AddWorkoutViewController.swift */; };
 		EE72768420DBEB2500A69A86 /* AddWorkoutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */; };
 		EE746EA520C48502004F08A8 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */; };
+		EE77DB782222179100E4156D /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE77DB772222179100E4156D /* Structs.swift */; };
 		EE806373210F7350003A2AC2 /* AddTimerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE806372210F7350003A2AC2 /* AddTimerPresentationController.swift */; };
 		EE806375210F7392003A2AC2 /* AddTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE806374210F7392003A2AC2 /* AddTimerViewController.swift */; };
 		EE91EBEE20AF28F8004A70C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EBED20AF28F8004A70C0 /* AppDelegate.swift */; };
@@ -103,6 +104,7 @@
 		EE72768120DBD74C00A69A86 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		EE72768320DBEB2500A69A86 /* AddWorkoutPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutPresentationController.swift; sourceTree = "<group>"; };
 		EE746EA420C48502004F08A8 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		EE77DB772222179100E4156D /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		EE806372210F7350003A2AC2 /* AddTimerPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerPresentationController.swift; sourceTree = "<group>"; };
 		EE806374210F7392003A2AC2 /* AddTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerViewController.swift; sourceTree = "<group>"; };
 		EE91EBEA20AF28F8004A70C0 /* workout-timers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workout-timers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +153,7 @@
 				EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */,
 				EE16593D20F825B900167D4D /* UIColor+Custom.swift */,
 				EEED17F7221DA78D00AD53CA /* UISegmentedControl+Utils.swift */,
+				EE77DB772222179100E4156D /* Structs.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE77DB782222179100E4156D /* Structs.swift in Sources */,
 				EE91EBF020AF28F8004A70C0 /* ViewController.swift in Sources */,
 				EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */,
 				EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */,

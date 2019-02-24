@@ -258,6 +258,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="7UF-uT-vTW" secondAttribute="bottom" constant="2" id="921-zu-48K"/>
                                         <constraint firstItem="7UF-uT-vTW" firstAttribute="top" secondItem="BoW-4N-VKl" secondAttribute="top" constant="2" id="V3G-WE-0aD"/>
@@ -265,6 +266,7 @@
                                         <constraint firstAttribute="trailing" secondItem="7UF-uT-vTW" secondAttribute="trailing" constant="4" id="sbD-7M-6d3"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="subtitle" destination="oVM-Xt-0TW" id="8Hl-l6-I8C"/>
                                     <outlet property="timeLabel" destination="7r2-aX-Acl" id="C2K-ci-8Hc"/>
@@ -331,36 +333,37 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmM-nN-sdX" customClass="UIProgressView">
-                                            <rect key="frame" x="4" y="4" width="367" height="40"/>
+                                            <rect key="frame" x="4" y="2" width="367" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWS-DO-X2a">
-                                            <rect key="frame" x="12" y="12" width="33.5" height="24"/>
+                                            <rect key="frame" x="12" y="12" width="33.5" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV1-oX-rl9">
-                                            <rect key="frame" x="321" y="12" width="42" height="24"/>
+                                            <rect key="frame" x="321" y="12" width="42" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="TWS-DO-X2a" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="12" id="4dZ-qf-mZ3"/>
                                         <constraint firstItem="nmM-nN-sdX" firstAttribute="leading" secondItem="D1O-mg-dFi" secondAttribute="leading" constant="4" id="A2z-bT-GWe"/>
-                                        <constraint firstAttribute="bottom" secondItem="nmM-nN-sdX" secondAttribute="bottom" id="BpV-O4-c4d"/>
-                                        <constraint firstItem="nmM-nN-sdX" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="4" id="Lyh-e4-was"/>
-                                        <constraint firstAttribute="bottom" secondItem="TWS-DO-X2a" secondAttribute="bottom" constant="8" id="Rjk-zX-Zme"/>
+                                        <constraint firstAttribute="bottom" secondItem="nmM-nN-sdX" secondAttribute="bottom" constant="2" id="BpV-O4-c4d"/>
+                                        <constraint firstItem="DV1-oX-rl9" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="12" id="FjL-cU-O1t"/>
+                                        <constraint firstItem="nmM-nN-sdX" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="2" id="Lyh-e4-was"/>
+                                        <constraint firstAttribute="bottom" secondItem="DV1-oX-rl9" secondAttribute="bottom" constant="12" id="Xt7-GT-D2h"/>
                                         <constraint firstAttribute="trailing" secondItem="DV1-oX-rl9" secondAttribute="trailing" constant="12" id="abE-Ci-16M"/>
                                         <constraint firstItem="TWS-DO-X2a" firstAttribute="leading" secondItem="D1O-mg-dFi" secondAttribute="leading" constant="12" id="eT2-fv-iSk"/>
-                                        <constraint firstAttribute="bottom" secondItem="DV1-oX-rl9" secondAttribute="bottom" constant="8" id="gy5-PH-xPY"/>
                                         <constraint firstAttribute="trailing" secondItem="nmM-nN-sdX" secondAttribute="trailing" constant="4" id="liF-m5-vB3"/>
+                                        <constraint firstAttribute="bottom" secondItem="TWS-DO-X2a" secondAttribute="bottom" constant="12" id="moC-fu-BMc"/>
                                         <constraint firstItem="DV1-oX-rl9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TWS-DO-X2a" secondAttribute="trailing" constant="8" symbolic="YES" id="vv6-h1-zXK"/>
-                                        <constraint firstItem="DV1-oX-rl9" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="12" id="xex-7L-KQn"/>
+                                        <constraint firstItem="TWS-DO-X2a" firstAttribute="top" secondItem="D1O-mg-dFi" secondAttribute="top" constant="12" id="vya-hZ-MJ3"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="progressView" destination="nmM-nN-sdX" id="xcJ-c1-hAt"/>
                                     <outlet property="timerName" destination="TWS-DO-X2a" id="VdZ-g3-Kc0"/>
