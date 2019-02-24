@@ -93,7 +93,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         }
     }
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let renameAction = UIContextualAction(style: .normal, title: "Rename") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+        let renameAction = UIContextualAction(style: .normal, title: "Edit") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             
             let screenRect = UIScreen.main.bounds
             //create a new view with the same size
