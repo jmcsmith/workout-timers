@@ -32,4 +32,30 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func speakTimerNamesChanged(_ sender: UISwitch) {
         defaults.set(sender.isOn, forKey: "speakTimers")
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            return
+        case 1:
+            switch indexPath.row {
+            case 0:
+                if let url = URL(string: "https://www.workouttimers.app/privacy"){
+                    UIApplication.shared.open(url, options:[:], completionHandler: nil)
+                }
+            case 1:
+                if let url = URL(string: "https://www.workouttimers.app"){
+                    UIApplication.shared.open(url, options:[:], completionHandler: nil)
+                }
+            case 2:
+                if let url = URL(string: "https://www.roboticsnailsoftware.com"){
+                    UIApplication.shared.open(url, options:[:], completionHandler: nil)
+                }
+  
+            default:
+                return
+            }
+        default:
+            return
+        }
+    }
 }

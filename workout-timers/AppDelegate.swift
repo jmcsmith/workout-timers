@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             let defaults = UserDefaults(suiteName: "group.workouttimers")
             if let data = defaults?.data(forKey: "workoutData"),
                 let workout = try? Workouts.init(data: data),
-                let timers = try? workout.jsonString() {
+                let timers = ((try? workout.jsonString()) as String??) {
                 let session = WCSession.default
                 if session.isWatchAppInstalled {
                     do {
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                 currentWorkouts = workout
             }
             currentWorkouts.append(workout)
-            try? defaults?.set(currentWorkouts.jsonData(), forKey: "workoutData")
+            ((try? defaults?.set(currentWorkouts.jsonData(), forKey: "workoutData")) as Void??)
             workoutsTableViewController.workouts = currentWorkouts
             workoutsTableViewController.tableView.reloadData()
             navigationController.popToRootViewController(animated: true)

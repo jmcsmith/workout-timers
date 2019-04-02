@@ -149,7 +149,7 @@ class WorkoutsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     func saveWorkoutsData() {
-        try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")
+        ((try? self.defaults?.set(self.workouts.jsonData(), forKey: "workoutData")) as Void??)
     }
     func snapshopOfCell(inputView: UIView) -> UIView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)

@@ -110,7 +110,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
             timer?.color = timerColor.titleForSegment(at: timerColor.selectedSegmentIndex)!
         }
         timerTableViewController?.workoutController.saveWorkoutsData()
-        timerTableViewController?.workoutController.tableView.reloadRows(at: [IndexPath.init(row: timerIndex, section: 0)], with: .automatic)
+        timerTableViewController?.workoutController.tableView.reloadData()
         //save
         timerTableViewController?.tableView.reloadData()
         timerName.resignFirstResponder()
