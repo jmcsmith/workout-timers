@@ -25,7 +25,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     @IBOutlet weak var toolbar: UIToolbar!
     var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
     var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
-        fileprivate var longPressGesture: UILongPressGestureRecognizer!
+    fileprivate var longPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +119,21 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             completionHandler(true)
         }
         renameAction.backgroundColor = UIColor.gray
-        return UISwipeActionsConfiguration(actions: [renameAction])
+        let duplicateAction = UIContextualAction(style: .normal, title: "Duplicate") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            var source = self.workout?.timers[indexPath.row]
+            if let source = source {
+                if let timerCopy = source.copy() as? Timer {
+                    self.workout?.timers.append(timerCopy)
+                    self.workoutController.saveWorkoutsData()
+                    self.workoutController.tableView.reloadData()
+                    self.tableView.reloadData()
+                    WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+                }
+            }
+            completionHandler(true)
+        }
+        duplicateAction.backgroundColor = .orange
+        return UISwipeActionsConfiguration(actions: [renameAction, duplicateAction])
     }
     func snapshopOfCell(inputView: UIView) -> UIView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)

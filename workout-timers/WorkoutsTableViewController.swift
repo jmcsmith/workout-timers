@@ -77,7 +77,19 @@ class WorkoutsTableViewController: UITableViewController {
             completionHandler(true)
         }
         renameAction.backgroundColor = UIColor.gray
-        return UISwipeActionsConfiguration(actions: [renameAction])
+        let duplicateAction = UIContextualAction(style: .normal, title: "Duplicate") { (contextaction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            let source = self.workouts[indexPath.row]
+           
+            if let workoutCopy = source.copy() as? Workout {
+                self.workouts.append(workoutCopy)
+                self.saveWorkoutsData()
+                self.tableView.reloadData()
+                WorkoutContext.sharedInstance.sendChangedOnPhoneNotification()
+            }
+            completionHandler(true)
+        }
+        duplicateAction.backgroundColor = .orange
+        return UISwipeActionsConfiguration(actions: [renameAction, duplicateAction])
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
