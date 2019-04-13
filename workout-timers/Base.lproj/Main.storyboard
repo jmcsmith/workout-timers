@@ -373,24 +373,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="l9p-0s-HKk">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Random" image="random" id="xOf-lm-DeS">
-                                    <connections>
-                                        <action selector="random:" destination="L3G-mb-Zsa" id="f63-Fr-GgD"/>
-                                    </connections>
-                                </barButtonItem>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="Qd3-CT-Gy9"/>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="OhV-gA-50f"/>
-                                <barButtonItem systemItem="action" id="88y-gi-ysb">
-                                    <connections>
-                                        <action selector="shareWorkout:" destination="L3G-mb-Zsa" id="Kzx-de-KRd"/>
-                                    </connections>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="timerCell" id="nON-aO-sGo" customClass="TimerTableViewCell" customModule="workout_timers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -443,7 +425,21 @@
                             <outlet property="delegate" destination="L3G-mb-Zsa" id="fYs-C3-rDs"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Random" image="random" id="xOf-lm-DeS">
+                            <connections>
+                                <action selector="random:" destination="L3G-mb-Zsa" id="f63-Fr-GgD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Qd3-CT-Gy9"/>
+                        <barButtonItem systemItem="play" id="WCg-DK-KbC"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="OhV-gA-50f"/>
+                        <barButtonItem systemItem="action" id="88y-gi-ysb">
+                            <connections>
+                                <action selector="shareWorkout:" destination="L3G-mb-Zsa" id="Kzx-de-KRd"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="yxY-J1-bTs">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="99s-0L-zhR">
                             <connections>
@@ -454,7 +450,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="randomButton" destination="xOf-lm-DeS" id="4RU-GF-XfU"/>
-                        <outlet property="toolbar" destination="l9p-0s-HKk" id="5k3-Rx-Zsy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujN-v0-jSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
