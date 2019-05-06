@@ -239,7 +239,9 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         randoms = []
         DispatchQueue.main.async {
             self.resetTimers()
-            self.playPauseButton.isEnabled = false
+            //self.playPauseButton.isEnabled = false
+            self.nav?.toolbar.items?.remove(at: 2)
+            self.nav?.toolbar.items?.insert(self.pauseButton, at: 2)
             self.randomButton.isEnabled = false
         }
         setTimerToRandom()
