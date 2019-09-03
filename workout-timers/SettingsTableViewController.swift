@@ -15,6 +15,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         let speak = defaults.bool(forKey: "speakTimers")
         speakTimerNamesSwitch.isOn = speak
+        tableView.tableFooterView = UIView()
     }
     @IBAction func speakTimerNamesChanged(_ sender: UISwitch) {
         defaults.set(sender.isOn, forKey: "speakTimers")

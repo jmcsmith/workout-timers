@@ -125,17 +125,47 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
     func updateSegmentedControlColor(for selectedIndex: Int) {
         switch selectedIndex {
         case 0:
-            timerColor.tintColor = UIColor.WorkoutGreen
+      
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.WorkoutGreen
+            } else {
+                     timerColor.tintColor = UIColor.WorkoutGreen
+            }
         case 1:
-            timerColor.tintColor = UIColor.WorkoutPink
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.WorkoutPink
+            } else {
+                timerColor.tintColor = UIColor.WorkoutPink
+            }
+            
         case 2:
-            timerColor.tintColor = UIColor.WorkoutBlue
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.WorkoutBlue
+            } else {
+                timerColor.tintColor = UIColor.WorkoutBlue
+            }
+            
         case 3:
-            timerColor.tintColor = UIColor.WorkoutYellow
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.WorkoutYellow
+            } else {
+                timerColor.tintColor = UIColor.WorkoutYellow
+            }
+           
         case 4:
-            timerColor.tintColor = UIColor.WorkoutOrange
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.WorkoutOrange
+            } else {
+               timerColor.tintColor = UIColor.WorkoutOrange
+            }
+            
         default:
-            timerColor.tintColor = UIColor.gray
+            if #available(iOS 13.0, *) {
+                timerColor.selectedSegmentTintColor = UIColor.gray
+            } else {
+               timerColor.tintColor = UIColor.gray
+            }
+            
         }
     }
 

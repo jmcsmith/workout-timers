@@ -9,11 +9,11 @@
 import UIKit
 
 class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var workoutColor: UISegmentedControl!
     @IBOutlet weak var workoutType: UISegmentedControl!
-
+    
     var workoutTableViewController: WorkoutsTableViewController?
     var coverView: UIView?
     @IBOutlet weak var windowTitle: UILabel!
@@ -48,21 +48,21 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
         }
         updateSegmentedControlColor(for: workoutColor.selectedSegmentIndex)
         workoutName.delegate = self
-      
+        
         // Do any additional setup after loading the view.
     }
     @objc func hideKeyboard(_ notification: Notification) {
         self.view.sizeToFit()
-
-            var newFrame = self.view.frame
-            newFrame.origin.y = 162
-            // add 100 to y's current value
-            DispatchQueue.main.async {
-                self.view.frame = newFrame
-                self.view.setNeedsLayout()
-                self.view.layoutSubviews()
-            }
-
+        
+        var newFrame = self.view.frame
+        newFrame.origin.y = 162
+        // add 100 to y's current value
+        DispatchQueue.main.async {
+            self.view.frame = newFrame
+            self.view.setNeedsLayout()
+            self.view.layoutSubviews()
+        }
+        
     }
     @objc func adjustViewSize(_ notification: Notification) {
         self.view.sizeToFit()
@@ -70,7 +70,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             var newFrame = self.view.frame
-              newFrame.origin.y -= keyboardHeight
+            newFrame.origin.y -= keyboardHeight
             // add 100 to y's current value
             DispatchQueue.main.async {
                 self.view.frame = newFrame
@@ -78,9 +78,9 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
                 self.view.layoutSubviews()
             }
         }
-
+        
     }
-
+    
     @IBAction func cancel(_ sender: Any) {
         workoutName.resignFirstResponder()
         coverView?.removeFromSuperview()
@@ -108,32 +108,58 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
         coverView?.removeFromSuperview()
     }
     @IBAction func colorValueChanged(_ sender: UISegmentedControl) {
-
+        
         updateSegmentedControlColor(for: sender.selectedSegmentIndex)
-
+        
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       self.add(self)
+        self.add(self)
         return true
     }
-
+    
     func updateSegmentedControlColor(for selectedIndex: Int) {
         switch selectedIndex {
         case 0:
-            workoutColor.tintColor = UIColor.WorkoutGreen
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.WorkoutGreen
+            } else {
+                workoutColor.tintColor = UIColor.WorkoutGreen
+            }
         case 1:
-            workoutColor.tintColor = UIColor.WorkoutPink
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.WorkoutPink
+            } else {
+                workoutColor.tintColor = UIColor.WorkoutPink
+            }
+            
         case 2:
-            workoutColor.tintColor = UIColor.WorkoutBlue
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.WorkoutBlue
+            } else {
+                workoutColor.tintColor = UIColor.WorkoutBlue
+            }
+            
         case 3:
-            workoutColor.tintColor = UIColor.WorkoutYellow
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.WorkoutYellow
+            } else {
+                workoutColor.tintColor = UIColor.WorkoutYellow
+            }
         case 4:
-            workoutColor.tintColor = UIColor.WorkoutOrange
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.WorkoutOrange
+            } else {
+                workoutColor.tintColor = UIColor.WorkoutOrange
+            }
         default:
-            workoutColor.tintColor = UIColor.gray
+            if #available(iOS 13.0, *) {
+                workoutColor.selectedSegmentTintColor = UIColor.gray
+            } else {
+                workoutColor.tintColor = UIColor.gray
+            }
         }
     }
-
+    
     /*
      // MARK: - Navigation
      
@@ -143,5 +169,5 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
      // Pass the selected object to the new view controller.
      }
      */
-
+    
 }
