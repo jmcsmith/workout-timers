@@ -55,7 +55,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
         self.view.sizeToFit()
         
         var newFrame = self.view.frame
-        newFrame.origin.y = 162
+        //newFrame.origin.y = 162
         // add 100 to y's current value
         DispatchQueue.main.async {
             self.view.frame = newFrame
@@ -70,7 +70,7 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             var newFrame = self.view.frame
-            newFrame.origin.y -= keyboardHeight
+            //newFrame.origin.y -= keyboardHeight
             // add 100 to y's current value
             DispatchQueue.main.async {
                 self.view.frame = newFrame

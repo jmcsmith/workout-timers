@@ -61,8 +61,8 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
             let keyboardHeight = keyboardRectangle.height
             var newFrame = self.view.frame
 
-                newFrame.origin.y += oldKeyboardHeight
-                newFrame.origin.y -= keyboardHeight
+                //newFrame.origin.y += oldKeyboardHeight
+                //newFrame.origin.y -= keyboardHeight
                 keyboardDisplayed = true
                 oldKeyboardHeight = keyboardHeight
 
@@ -77,7 +77,7 @@ class AddTimerViewController: UIViewController, UITextFieldDelegate {
         self.view.sizeToFit()
 
             var newFrame = self.view.frame
-            newFrame.origin.y = 162
+            //newFrame.origin.y = 162
             // add 100 to y's current value
             DispatchQueue.main.async {
                 self.view.frame = newFrame

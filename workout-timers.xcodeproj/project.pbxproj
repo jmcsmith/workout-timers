@@ -38,6 +38,7 @@
 		EE91EC0420AF38D9004A70C0 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0320AF38D9004A70C0 /* Workout.swift */; };
 		EE91EC0620AF3913004A70C0 /* example.json in Resources */ = {isa = PBXBuildFile; fileRef = EE91EC0520AF3913004A70C0 /* example.json */; };
 		EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */; };
+		EE960422246B0A7200D84981 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE960421246B0A7200D84981 /* Notifications.swift */; };
 		EE9A8C4620D0B33300E9E8FD /* TimersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */; };
 		EE9A8C4820D0B4E700E9E8FD /* TimerRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */; };
 		EE9A8E6A20D3F2FC00E9E8FD /* HeaderRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */; };
@@ -119,6 +120,7 @@
 		EE91EC0320AF38D9004A70C0 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		EE91EC0520AF3913004A70C0 /* example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		EE91EC0720B86B2E004A70C0 /* CurrentTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimer.swift; sourceTree = "<group>"; };
+		EE960421246B0A7200D84981 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		EE9A8C4520D0B33300E9E8FD /* TimersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersInterfaceController.swift; sourceTree = "<group>"; };
 		EE9A8C4720D0B4E700E9E8FD /* TimerRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowController.swift; sourceTree = "<group>"; };
 		EE9A8E6920D3F2FC00E9E8FD /* HeaderRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRowController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				EE16593D20F825B900167D4D /* UIColor+Custom.swift */,
 				EEED17F7221DA78D00AD53CA /* UISegmentedControl+Utils.swift */,
 				EE77DB772222179100E4156D /* Structs.swift */,
+				EE960421246B0A7200D84981 /* Notifications.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE77DB782222179100E4156D /* Structs.swift in Sources */,
+				EE960422246B0A7200D84981 /* Notifications.swift in Sources */,
 				EE91EBF020AF28F8004A70C0 /* ViewController.swift in Sources */,
 				EE91EC0820B86B2E004A70C0 /* CurrentTimer.swift in Sources */,
 				EE91EC0220AF3350004A70C0 /* TimersTableViewController.swift in Sources */,
@@ -683,12 +687,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = JANZDS5D43;
 				INFOPLIST_FILE = "workout-timers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2019.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -701,12 +707,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = JANZDS5D43;
 				INFOPLIST_FILE = "workout-timers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2019.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.RoboticSnailSoftware.workout-timers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

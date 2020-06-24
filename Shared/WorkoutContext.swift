@@ -11,7 +11,8 @@ import Foundation
 class WorkoutContext {
 
     static let sharedInstance = WorkoutContext()
-
+     var currentWorkout: Workout?
+    var currentTimerIndex: Int = 0
     let workoutsChangedOnPhone = "workoutsChangedOnPhone"
     let requestWorkoutsFromPhone = "requestWorkoutsFromPhone"
     var workouts: Workouts = []

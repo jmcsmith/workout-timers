@@ -9,13 +9,19 @@
 import UIKit
 import WatchConnectivity
 import AVKit
+import UserNotifications
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     let workoutsChangedOnPhone = "workoutsChangedOnPhone"
+
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
     }()
+    let notifications = Notifications()
+    let nc = UNUserNotificationCenter.current()
+    
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
@@ -39,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         setupWatchConnectivity()
         setupNotificationCenter()
         UIApplication.shared.isIdleTimerDisabled = true
+        nc.delegate = self
+        notifications.notificationRequest()
         return true
     }
     func setupWatchConnectivity() {
@@ -119,4 +127,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             }
         }
     }
+}
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        if UIApplication.shared.applicationState == .active {
+//            completionHandler([])
+//        }
+        //
+
+        completionHandler([.alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if response.notification.request.identifier == "Local Notification" {
+            print("Handling notifications with the Local Notification Identifier")
+        }
+        
+        completionHandler()
+    }
+
+
 }

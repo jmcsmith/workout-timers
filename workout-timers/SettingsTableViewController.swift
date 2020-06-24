@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var speakTimerNamesSwitch: UISwitch!
@@ -20,6 +21,9 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func speakTimerNamesChanged(_ sender: UISwitch) {
         defaults.set(sender.isOn, forKey: "speakTimers")
     }
+    @IBAction func done(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -27,7 +31,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             switch indexPath.row {
             case 0:
-                if let url = URL(string: "https://www.workouttimers.app/privacy") {
+                if let url = URL(string: "https://roboticsnailsoftware.com/sd/privacy-policy") {
                     UIApplication.shared.open(url, options:[:], completionHandler: nil)
                 }
             case 1:
@@ -38,7 +42,8 @@ class SettingsTableViewController: UITableViewController {
                 if let url = URL(string: "https://www.roboticsnailsoftware.com") {
                     UIApplication.shared.open(url, options:[:], completionHandler: nil)
                 }
-                
+            case 3:
+                SKStoreReviewController.requestReview()
             default:
                 return
             }

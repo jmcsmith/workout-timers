@@ -70,8 +70,8 @@ class WorkoutsTableViewController: UITableViewController {
                 referenceViewController.workoutIndex = indexPath.row
                 referenceViewController.coverView = coverView
                 referenceViewController.workoutTableViewController = self
-                referenceViewController.transitioningDelegate = self
-                referenceViewController.modalPresentationStyle = .custom
+                //referenceViewController.transitioningDelegate = self
+                //referenceViewController.modalPresentationStyle = .custom
                 self.present(referenceViewController, animated: true, completion: nil)
             }
             completionHandler(true)
@@ -135,8 +135,8 @@ class WorkoutsTableViewController: UITableViewController {
             as? AddWorkoutViewController {
             referenceViewController.coverView = coverView
             referenceViewController.workoutTableViewController = self
-            referenceViewController.transitioningDelegate = self
-            referenceViewController.modalPresentationStyle = .custom
+            //referenceViewController.transitioningDelegate = self
+            //referenceViewController.modalPresentationStyle = .custom
             self.present(referenceViewController, animated: true, completion: nil)
         }
     }
@@ -156,7 +156,7 @@ class WorkoutsTableViewController: UITableViewController {
             let destination = segue.destination as? AddWorkoutViewController
             destination?.workoutTableViewController = self
             destination?.modalPresentationStyle = .custom
-            destination?.transitioningDelegate = self
+            //destination?.transitioningDelegate = self
         }
         // Pass the selected object to the new view controller.
     }
@@ -241,13 +241,13 @@ class WorkoutsTableViewController: UITableViewController {
         }
     }
 }
-extension WorkoutsTableViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController?,
-        source: UIViewController)
-        -> UIPresentationController? {
-            return AddWorkoutPresentationController(
-                presentedViewController: presented, presenting: presenting)
-    }
-}
+//extension WorkoutsTableViewController: UIViewControllerTransitioningDelegate {
+//    func presentationController(
+//        forPresented presented: UIViewController,
+//        presenting: UIViewController?,
+//        source: UIViewController)
+//        -> UIPresentationController? {
+//            return AddWorkoutPresentationController(
+//                presentedViewController: presented, presenting: presenting)
+//    }
+//}

@@ -25,7 +25,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     var playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
     var pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
     var nav: UINavigationController?
-
+    let notifications = Notifications()
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
@@ -36,8 +36,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         if let navCon = self.navigationController {
             nav = navCon
         }
-         playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
-         pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
+        playButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(play))
+        pauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pause))
         var buttonToAdd = playButton
         if isWorkoutPlaying {
             buttonToAdd = pauseButton
@@ -53,9 +53,13 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
     }
     override func viewWillDisappear(_ animated: Bool) {
         nav?.setToolbarHidden(true, animated: true)
+        if timer != nil {
+        timer.invalidate()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         nav?.setToolbarHidden(false, animated: true)
+        
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -119,8 +123,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
                 referenceViewController.timerTableViewController = self
                 referenceViewController.isEdit = true
                 referenceViewController.timerIndex = indexPath.row
-                referenceViewController.transitioningDelegate = self
-                referenceViewController.modalPresentationStyle = .custom
+                //referenceViewController.transitioningDelegate = self
+                //referenceViewController.modalPresentationStyle = .custom
                 self.present(referenceViewController, animated: true, completion: {
                     self.randomButton.isEnabled = true
                     self.nav?.toolbar.items?[2].isEnabled = true
@@ -282,8 +286,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         if let referenceViewController = storyboard?.instantiateViewController(withIdentifier: "AddTimer") as? AddTimerViewController {
             referenceViewController.coverView = coverView
             referenceViewController.timerTableViewController = self
-            referenceViewController.transitioningDelegate = self
-            referenceViewController.modalPresentationStyle = .custom
+            //referenceViewController.transitioningDelegate = self
+            //referenceViewController.modalPresentationStyle = .custom
             self.present(referenceViewController, animated: true, completion: {
                 self.randomButton.isEnabled = true
                 self.nav?.toolbar.items?[2].isEnabled = true
@@ -301,6 +305,7 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         setTimerToIndex(index: 0)
     }
     @objc func play() {
+        WorkoutContext.sharedInstance.currentWorkout = workout
         if workoutIsPaused {
             resumeCurrentTimer()
             workoutIsPaused = false
@@ -317,6 +322,9 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
                 self.randomButton.isEnabled = false
             }
             setTimerToIndex(index: 0)
+        }
+        if let workout = workout {
+            notifications.scheduleNotifications(workout: workout)
         }
     }
     @objc func pause() {
@@ -343,10 +351,8 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             let cell = tableView.cellForRow(at: IndexPath(row: currentTimer.timerIndex, section: 0)) as? TimerTableViewCell
             cell?.timerTime?.text = currentTimer.currentTime.description
             cell?.progressView.setProgress(Float((currentTimer.startTime - currentTimer.currentTime) / currentTimer.startTime), animated: true)
-            print(currentTimer.currentTime)
         } else {
             timer.invalidate()
-            print("end timer")
             if currentTimer.timerIndex < (workout?.timers.count)! - 1 {
                 setTimerToIndex(index: (currentTimer.timerIndex + 1))
             } else {
@@ -387,6 +393,10 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
             currentTimer.startTime = time
             currentTimer.currentTime = time
             currentTimer.timerIndex = index
+            
+            //notifications.scheduleNotification(notificationType: (workout?.timers[index].name)!)
+            //notifications.scheduleNotification(currentIndex: index)
+            
         }
         timer = UIKit.Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
@@ -421,16 +431,16 @@ class TimersTableViewController: UITableViewController, AVSpeechSynthesizerDeleg
         setTimerToIndex(index: indexPath.row)
     }
 }
-extension TimersTableViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController?,
-        source: UIViewController)
-        -> UIPresentationController? {
-            return AddTimerPresentationController(
-                presentedViewController: presented, presenting: presenting)
-    }
-}
+//extension TimersTableViewController: UIViewControllerTransitioningDelegate {
+//    func presentationController(
+//        forPresented presented: UIViewController,
+//        presenting: UIViewController?,
+//        source: UIViewController)
+//        -> UIPresentationController? {
+//            return AddTimerPresentationController(
+//                presentedViewController: presented, presenting: presenting)
+//    }
+//}
 
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
